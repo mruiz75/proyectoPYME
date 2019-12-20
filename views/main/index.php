@@ -33,12 +33,12 @@
     	<!-- Collect the nav links, forms, and other content for toggling -->
     		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       		<ul class="nav navbar-nav">
-      		  <li class="active"><a href="#">Home</a></li>
- 			    	<li><a href="bandejaEntrada">Bandeja de Entrada</a></li>
- 			    	<li><a href="gestionUsuarios">Gestión de Usuarios</a></li> 
- 			    	<li><a href="#">Gestión de Tareas</a></li>
- 			    	<li><a href="#">Gestión de Proyectos</a></li> 
- 			    	<li><a href="#">Reportes</a></li>
+      		  <li class="active"><a href="#">Hoja de Tiempo</a></li>
+ 			    	<li><a href="<?php echo constant('URL'); ?>bandejaEntrada">Bandeja de Entrada</a></li>
+ 			    	<li><a href="<?php echo constant('URL'); ?>gestionUsuarios">Gestión de Usuarios</a></li> 
+ 			    	<li><a href="<?php echo constant('URL'); ?>gestionTareas">Gestión de Tareas</a></li>
+ 			    	<li><a href="<?php echo constant('URL'); ?>gestionProyectos">Gestión de Proyectos</a></li> 
+ 			    	<li><a href="<?php echo constant('URL'); ?>reportes">Reportes</a></li>
       		</ul>
       		<ul class="nav navbar-nav navbar-right">
             <li><a href="#" class="btn disabled"><?php echo $_SESSION['correo'] ?></a></li>
