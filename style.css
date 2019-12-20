@@ -1,0 +1,17 @@
+body{
+	background: url(login-fondo.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+.login-box{
+	max-width: 600px;
+	float: none;
+	margin: 150px auto;
+}
+
+.inicio-box{
+	background: rgba(211, 211, 211, 0.85);
+	padding: 30px;
+}
+
