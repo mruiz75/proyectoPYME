@@ -27,5 +27,6 @@
 			</div>
 		</div>
 	</div>
+	<?php require 'views/footer.php'; ?>
 </body>
 </html>
