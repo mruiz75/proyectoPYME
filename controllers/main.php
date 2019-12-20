@@ -2,9 +2,17 @@
 
 class Main extends Controller{
 
-	function __construct(){
-		parent::__construct();
-		$this->view->render('main/index');
+	public $userPosition;
+
+	function __construct($userPos){
+		$this->userPosition = $userPos;
+		if($this->userPosition == 1){
+			parent::__construct();
+			$this->view->render('main/index');
+		}else{
+			parent::__construct();
+			$this->view->render('main/index2');
+		}
 		//echo "<p> Nuevo controlador Main </p>";
 	}
 

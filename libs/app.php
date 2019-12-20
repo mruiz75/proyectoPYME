@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 require_once 'controllers/errores.php';
 
 class App{
@@ -9,9 +11,9 @@ class App{
 		$url = explode('/', $url);
 
 		if(empty($url[0])){
-			$archivoController = 'controllers/main.php'
-			requiere_once $archivoController;
-			$controller = new Main();
+			$archivoController = 'controllers/main.php';
+			require_once $archivoController;
+			$controller = new Main($_SESSION['posicion']);
 			return false;
 		}
 		
