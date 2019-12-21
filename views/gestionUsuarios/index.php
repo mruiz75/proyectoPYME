@@ -1,6 +1,6 @@
 <?php 
 	
-	session_start();
+	//session_start();
 	// if(!isset($_SESSION['email'])){
 	// 	header('location:login.php');
 	// }
@@ -32,19 +32,24 @@
 
     	<!-- Collect the nav links, forms, and other content for toggling -->
     		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      			<ul class="nav navbar-nav">
-      				<li class="active"><a href="#">Home</a></li>
-      			</ul>
-      			<ul class="nav navbar-nav navbar-right">
-              <li><a href="#" class="btn disabled"><?php echo $_SESSION['correo'] ?></a></li>
-        			<li><a href="logout.php"><i class="fas fa-user"></i> Log Out</a></li>
-      			</ul>
+      		<ul class="nav navbar-nav">
+      		  <li><a href="<?php echo constant('URL'); ?>hojaDeTiempo">Hoja de Tiempo</a></li>
+ 			    	<li><a href="<?php echo constant('URL'); ?>bandejaEntrada">Bandeja de Entrada</a></li>
+ 			    	<li class="active"><a href="#">Gestión de Usuarios</a></li> 
+ 			    	<li><a href="<?php echo constant('URL'); ?>gestionTareas">Gestión de Tareas</a></li>
+ 			    	<li><a href="<?php echo constant('URL'); ?>gestionProyectos">Gestión de Proyectos</a></li> 
+ 			    	<li><a href="<?php echo constant('URL'); ?>reportes">Reportes</a></li>
+      		</ul>
+      		<ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="btn disabled"><?php echo $_SESSION['correo'] ?></a></li>
+        		<li><a href="logout.php"><i class="fas fa-user"></i> Log Out</a></li>
+      		</ul>
     		</div><!-- /.navbar-collapse -->
   		</div><!-- /.container-fluid -->
 	</nav>
 
-	 
-
+	<h1>GESTION DE USUARIOS</h1>
+	
 	 <script   src="http://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
  </body>

@@ -27,28 +27,45 @@
 		        	<span class="icon-bar"></span>
 		        	<span class="icon-bar"></span>
      			</button>
-      		<a class="navbar-brand disabled" href="#">LOGO</a>
+      		<a class="navbar-brand btn disabled" href="#">LOGO</a>
     		</div>
 
     	<!-- Collect the nav links, forms, and other content for toggling -->
     		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      			<ul class="nav navbar-nav">
-      				<li class="active"><a href="#">Home</a></li>
- 			    	<li><a href="#">Bandeja de Entrada</a></li>
- 			    	<li><a href="#">Gestión de Usuarios</a></li> 
+      		<ul class="nav navbar-nav">
+      		  <li class="active"><a href="#">Home</a></li>
+ 			    	<li><a href="bandejaEntrada">Bandeja de Entrada</a></li>
+ 			    	<li><a href="gestionUsuarios">Gestión de Usuarios</a></li> 
  			    	<li><a href="#">Gestión de Tareas</a></li>
  			    	<li><a href="#">Gestión de Proyectos</a></li> 
  			    	<li><a href="#">Reportes</a></li>
-      			</ul>
-      			<ul class="nav navbar-nav navbar-right">
-        			<li><a href="logout.php"><i class="fas fa-user"></i> Log Out</a></li>
-      			</ul>
+      		</ul>
+      		<ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="btn disabled"><?php echo $_SESSION['correo'] ?></a></li>
+        		<li><a href="logout.php"><i class="fas fa-user"></i> Log Out</a></li>
+      		</ul>
     		</div><!-- /.navbar-collapse -->
   		</div><!-- /.container-fluid -->
 	</nav>
 
-	 <h1>Welcome to the admin session <?php echo $_SESSION['correo'] ?></h1>
+	 <table>
+    <thead>
+      <tr>
+        <th>Tareas</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+      </tr>
+    </thead>
 
+    <tbody>
+        
+      <?php 
+       ?>
+    </tbody>
+   </table>
 	 <script   src="http://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
  </body>

@@ -16,15 +16,19 @@ $count = mysqli_num_rows($result);
 
 if($count == 1){
 	$row = mysqli_fetch_assoc($result);
-	if($row['posicion'] == 1){
-		$_SESSION['correo'] = $correo;
-		header('location:adminhome.php');
-	}else{
-		$_SESSION['correo'] = $correo;
-		header('location:home.php');
-	}
+	$posicion = $row['posicion'];
+	// if($row['posicion'] == 1){
+	// 	$_SESSION['correo'] = $correo;
+	// 	header('location:adminhome.php');
+	// }else{
+	// 	$_SESSION['correo'] = $correo;
+	// 	header('location:home.php');
+	// }
+	$_SESSION['correo'] = $correo;
+	$_SESSION['posicion'] = $posicion;
+	header('location:index2.php');
 }else{
-	header('location:login.php');
+	header('location:index.php');
 }
 
  ?>
