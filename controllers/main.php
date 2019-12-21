@@ -8,10 +8,10 @@ class Main extends Controller{
 		$this->userPosition = $userPos;
 		if($this->userPosition == 1){
 			parent::__construct();
-			$this->view->render('main/index');
+			$this->view->render('hojaDeTiempo/index');
 		}else{
 			parent::__construct();
-			$this->view->render('main/index2');
+			$this->view->render('hojaDeTiempo/index2');
 		}
 		//echo "<p> Nuevo controlador Main </p>";
 	}

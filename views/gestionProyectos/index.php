@@ -33,7 +33,7 @@
     	<!-- Collect the nav links, forms, and other content for toggling -->
     		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       		<ul class="nav navbar-nav">
-      		  <li><a href="<?php echo constant('URL'); ?>main">Hoja de Tiempo</a></li>
+      		  <li><a href="<?php echo constant('URL'); ?>hojaDeTiempo">Hoja de Tiempo</a></li>
  			    	<li><a href="<?php echo constant('URL'); ?>bandejaEntrada">Bandeja de Entrada</a></li>
  			    	<li><a href="<?php echo constant('URL'); ?>gestionUsuarios">Gestión de Usuarios</a></li> 
  			    	<li><a href="<?php echo constant('URL'); ?>gestionTareas">Gestión de Tareas</a></li>
@@ -48,24 +48,8 @@
   		</div><!-- /.container-fluid -->
 	</nav>
 
-	 <table>
-    <thead>
-      <tr>
-        <th>Tareas</th>
-        <th>Lunes</th>
-        <th>Martes</th>
-        <th>Miercoles</th>
-        <th>Jueves</th>
-        <th>Viernes</th>
-      </tr>
-    </thead>
+  <h1>GESTION DE PROYECTOS</h1>
 
-    <tbody>
-        
-      <?php 
-       ?>
-    </tbody>
-   </table>
 	 <script   src="http://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
  </body>

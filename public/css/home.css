@@ -2,7 +2,6 @@ body{
 	background: white;
 	background-position: center;
 	font-family: Lato;
-	color: white;
 }
 
 #content{
@@ -28,5 +27,12 @@ hr{
 	width: 400px;
 	border-top: 1px solid #f8f8f8;
 	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.table{
+	border-collapse: collapse;
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
 }
 
