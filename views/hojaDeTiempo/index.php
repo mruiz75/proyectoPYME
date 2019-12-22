@@ -34,11 +34,11 @@
     		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       		<ul class="nav navbar-nav">
       		  <li class="active"><a href="#">Hoja de Tiempo</a></li>
- 			    	<li><a href="<?php echo constant('URL'); ?>bandejaEntrada">Bandeja de Entrada</a></li>
- 			    	<li><a href="<?php echo constant('URL'); ?>gestionUsuarios">Gestión de Usuarios</a></li> 
- 			    	<li><a href="<?php echo constant('URL'); ?>gestionTareas">Gestión de Tareas</a></li>
- 			    	<li><a href="<?php echo constant('URL'); ?>gestionProyectos">Gestión de Proyectos</a></li> 
- 			    	<li><a href="<?php echo constant('URL'); ?>reportes">Reportes</a></li>
+ 			    	<li><a href="../bandejaEntrada/index.php">Bandeja de Entrada</a></li>
+ 			    	<li><a href="../gestionUsuarios/index.php">Gestión de Usuarios</a></li>
+ 			    	<li><a href="../gestionTareas/index.php">Gestión de Tareas</a></li>
+ 			    	<li><a href="../gestionProyectos/index.php">Gestión de Proyectos</a></li>
+ 			    	<li><a href="../reportes/index.php">Reportes</a></li>
       		</ul>
       		<ul class="nav navbar-nav navbar-right">
             <li><a href="#" class="btn disabled"><?php echo $_SESSION['correo'] ?></a></li>
@@ -49,6 +49,17 @@
 	</nav>
 
     <div class="container">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Agregar tarea
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="?tarea=Tarea1<?php echo ",".$_GET['tarea']?>">Tarea1</a>
+                <a class="dropdown-item" href="?tarea=Tarea2<?php echo ",".$_GET['tarea']?>">Tarea2</a>
+                <a class="dropdown-item" href="?tarea=Tarea3<?php echo ",".$_GET['tarea']?>">Tarea3</a>
+            </div>
+        </div><br>
+
     	 <table class="table">
         <thead>
           <tr class="danger">
@@ -62,46 +73,24 @@
         </thead>
 
         <tbody>
-            <tr>
-              <td>Tarea 1</td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-            </tr>
-            <tr>
-              <td>Tarea 2</td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-            </tr>
-            <tr>
-              <td>Tarea 3</td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-            </tr>
-            <tr>
-              <td>Tarea 4</td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-            </tr>
-            <tr>
-              <td>Tarea 5</td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-              <td><input type="text" name="tiempo"></td>
-            </tr>
+                <?php
+                if ($_GET['tarea'] != null && $_GET['tarea'] != "") {
+                    $tareas = explode(",",$_GET['tarea']);
+
+                    foreach ($tareas as $tarea) {
+                        if ($tarea != '') {
+                            echo "<tr>
+                                  <td>" . $tarea . "</td>
+                                  <td><input type=\"text\" name=\"tiempo\"></td>
+                                  <td><input type=\"text\" name=\"tiempo\"></td>
+                                  <td><input type=\"text\" name=\"tiempo\"></td>
+                                  <td><input type=\"text\" name=\"tiempo\"></td>
+                                  <td><input type=\"text\" name=\"tiempo\"></td>
+                                  </tr>";
+                        }
+                    }
+                }
+                ?>
         </tbody>
        </table>
      <input type="submit" value="Solicitar Revisión">

@@ -100,6 +100,7 @@ CREATE TABLE `tarea` (
   `fecha_limite` date NOT NULL,
   `encargado` int(11) DEFAULT NULL,
   `proyecto` int(11) NOT NULL,
+  `hoja_tiempo` int(11) NOT NULL,
   `estado` int(11) NOT NULL,
   `lunes` time DEFAULT NULL,
   `martes` time DEFAULT NULL,
@@ -171,7 +172,8 @@ ALTER TABLE `reporte`
 ALTER TABLE `tarea`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_tarea_usuario` (`encargado`),
-  ADD KEY `fk_tarea_proyecto` (`proyecto`);
+  ADD KEY `fk_tarea_proyecto` (`proyecto`),
+  ADD KEY `fk_tarea_hoja_de_tiempo` (`hoja_tiempo`);
 
 --
 -- Indices de la tabla `usuario`
@@ -229,7 +231,8 @@ ALTER TABLE `reporte`
 --
 ALTER TABLE `tarea`
   ADD CONSTRAINT `fk_tarea_proyecto` FOREIGN KEY (`proyecto`) REFERENCES `proyecto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_tarea_usuario` FOREIGN KEY (`encargado`) REFERENCES `usuario` (`cedula`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_tarea_usuario` FOREIGN KEY (`encargado`) REFERENCES `usuario` (`cedula`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_tarea_hoja_de_tiempo` FOREIGN KEY (`hoja_tiempo`) REFERENCES `hoja_de_tiempo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
