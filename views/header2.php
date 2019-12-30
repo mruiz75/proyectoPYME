@@ -7,42 +7,24 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="public/css/footer.css">
-    
+
     <title>Colors</title>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand disabled" href="<?php echo constant('URL'); ?>inicio" aria-disabled="true">LOGO</a>
+        <a class="navbar-brand disabled" href="#" aria-disabled="true">LOGO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
+          
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo constant('URL'); ?>hojaTiempo">Hoja de Tiempo</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo constant('URL'); ?>bandejaEntrada">Bandeja de Entrada</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Gestion de Usuarios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Reportes</a>
-                </li>
             </ul>
-            <ul class="navbar-nav">
-                <!-- <li class="nav-item">
-                    <label for=""><h3 class="center"><?php //echo $this->user->getNombre(); ?></h3>
-    </label> -->
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo constant('URL'); ?>logout">LOGOUT</a>
-                </li>
-            </ul>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log Out</button>
         </div>
     </nav>
 

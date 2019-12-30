@@ -1,14 +1,12 @@
-<?php 
+<?php
 
 class Errores extends Controller{
 
-	function __construct(){
-		parent::__construct();
-		$this->view->mensaje = "Error en la solicitud o no existe la página";
-		$this->view->render('errores/index');
-		//echo "<p>Error al cargar recurso</p>";
-	}
-
+    function __construct(){
+        parent::__construct();
+        $this->view->mensaje = "Hay un error al cargar el recurso";
+        $this->view->render('errores/index');
+        //echo "Error al cargar el recurso";
+    }
 }
-
- ?>
+?>
