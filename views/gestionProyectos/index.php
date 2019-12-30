@@ -1,56 +1,27 @@
-<?php 
-	
-	//session_start();
-	// if(!isset($_SESSION['email'])){
-	// 	header('location:login.php');
-	// }
- ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
- <!DOCTYPE html>
- <html>
- <head>
- 	<meta charset="utf-8">
- 	<title>Home Page</title>
- 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="home.css">
- </head>
- <body>
+    
+    <title>Hoja de Tiempo</title>
+</head>
+<body>
+    
+    <div class="container">
+        <?php require 'views/header.php'; ?>
 
-	<nav class="navbar navbar-default">
-  		<div class="container">
-    	<!-- Brand and toggle get grouped for better mobile display -->
-    		<div class="navbar-header">
-     			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-		        	<span class="sr-only">Toggle navigation</span>
-		        	<span class="icon-bar"></span>
-		        	<span class="icon-bar"></span>
-		        	<span class="icon-bar"></span>
-     			</button>
-      		<a class="navbar-brand btn disabled" href="#">LOGO</a>
-    		</div>
+        <h1 class="center">BANDEJA DE ENTRADA</h1>
 
-    	<!-- Collect the nav links, forms, and other content for toggling -->
-    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      		<ul class="nav navbar-nav">
-      		  <li><a href="../hojaDeTiempo/index.php">Hoja de Tiempo</a></li>
- 			    	<li><a href="../bandejaEntrada/index.php">Bandeja de Entrada</a></li>
- 			    	<li><a href="../gestionUsuarios/index.php">Gestión de Usuarios</a></li>
- 			    	<li><a href="../gestionTareas/index.php">Gestión de Tareas</a></li>
- 			    	<li class="active"><a href="#">Gestión de Proyectos</a></li> 
- 			    	<li><a href="../reportes/index.php">Reportes</a></li>
-      		</ul>
-      		<ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="btn disabled"><?php echo $_SESSION['correo'] ?></a></li>
-        		<li><a href="logout.php"><i class="fas fa-user"></i> Log Out</a></li>
-      		</ul>
-    		</div><!-- /.navbar-collapse -->
-  		</div><!-- /.container-fluid -->
-	</nav>
+    </div>
 
-  <h1>GESTION DE PROYECTOS</h1>
-
-	 <script   src="http://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
- </body>
- </html>
+    <?php require 'views/footer.php'; ?>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

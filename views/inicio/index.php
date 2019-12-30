@@ -12,9 +12,15 @@
 <body>
     
     <div class="container">
-        <?php require 'views/header.php'; ?>
 
-        <h1 class="center">BANDEJA DE ENTRADA</h1>
+        <?php 
+            if(!isset($_SESSION['nombre'])){
+                session_start();
+            }
+            require 'views/header.php'; 
+        ?>
+
+        <h1 class="center">Bienvenido <?php echo $_SESSION['nombre']?></h1>
 
     </div>
 

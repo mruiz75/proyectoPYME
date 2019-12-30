@@ -4,7 +4,11 @@ class Main extends Controller{
 
 	public $userPosition;
 
-	function __construct($userPos){
+	function __construct(){
+		parent::__construct();
+	}
+
+	function render($userPos){
 		$this->userPosition = $userPos;
 		if($this->userPosition == 1){
 			parent::__construct();
@@ -13,9 +17,7 @@ class Main extends Controller{
 			parent::__construct();
 			$this->view->render('hojaDeTiempo/index2');
 		}
-		//echo "<p> Nuevo controlador Main </p>";
 	}
-
 
 	function saludo(){
 		echo "<p>Ejecutaste el metodo saludo</p>";
