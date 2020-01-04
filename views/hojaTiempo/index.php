@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
     
     <title>Hoja de Tiempo</title>
 </head>
@@ -14,40 +14,52 @@
     <div class="container">
         <?php require 'views/header.php'; ?>
 
-        <h1 class="center">HOJA DE TIEMPO</h1>
-        <table class="table">
-            <thead class="thead table-danger">
-                <tr>
-                    <th scope="col">Tareas</th>
-                    <th scope="col">Lunes</th>
-                    <th scope="col">Martes</th>
-                    <th scope="col">Miercoles</th>
-                    <th scope="col">Jueves</th>
-                    <th scope="col">Viernes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                    include_once 'models/tarea.php';
-                    foreach($this->tareas as $row){
-                        $tarea = new Tarea();
-                        $tarea = $row;
-                ?>
-                <tr>
-                    <td><b><?php echo $tarea->nombre; ?></b><p><?php echo $tarea->descripcion; ?></p></td>
-                    <td><input type="text" value=<?php echo $tarea->lunes; ?>></td>
-                    <td><input type="text" value=<?php echo $tarea->martes; ?>></td>
-                    <td><input type="text" value=<?php echo $tarea->miercoles; ?>></td>
-                    <td><input type="text" value=<?php echo $tarea->jueves; ?>></td>
-                    <td><input type="text" value=<?php echo $tarea->viernes; ?>></td>
-                </tr>
-                <?php }; ?>
-            </tbody>
-        </table>
+        <h1 class="center" id="tituloPagina">HOJA DE TIEMPO</h1>
+        <form action="<?php echo constant('URL');?>hojaTiempo/enviarRevision" method="POST">
+            <table class="table">
+                <thead class="thead table-danger">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tareas</th>
+                        <th scope="col">Lunes</th>
+                        <th scope="col">Martes</th>
+                        <th scope="col">Miercoles</th>
+                        <th scope="col">Jueves</th>
+                        <th scope="col">Viernes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        include_once 'models/tarea.php';
+                        foreach($this->tareas as $row){
+                            $tarea = new Tarea();
+                            $tarea = $row;
+                    ?>
+                    <tr>
+                        <td><input id="idTarea" name="id[]" type="text" value=<?php echo $tarea->id; ?>></td>
+                        <td><b><?php echo $tarea->nombre; ?></b><p><?php echo $tarea->descripcion; ?></p></td>
+                        <td><input name="lunes[]" type="text" value=<?php echo $tarea->lunes; ?>></td>
+                        <td><input name="martes[]" type="text" value=<?php echo $tarea->martes; ?>></td>
+                        <td><input name="miercoles[]" type="text" value=<?php echo $tarea->miercoles; ?>></td>
+                        <td><input name="jueves[]" type="text" value=<?php echo $tarea->jueves; ?>></td>
+                        <td><input name="viernes[]" type="text" value=<?php echo $tarea->viernes; ?>></td>
+                    </tr>
+                    <?php }; ?>
+                </tbody>
+            </table>
 
-        <div>
-            <button type="button" class="btn btn-outline-success float-right">Enviar a Revisión</button>
-        </div>
+            <div>
+                <label class="comentariosHojaTiempo">COMENTARIOS:
+                <?php 
+                if(isset($hojaTiempo->comentarios)){
+                    echo $hojaTiempo->comentarios;
+                }else{
+                    echo "No hay comentario por mostrar";
+                }?>
+                 </label>
+                <input type="submit" class="btn btn-outline-success float-right" value="Enviar a Revisión">
+            </div>
+        </form>
 
     </div>
 
