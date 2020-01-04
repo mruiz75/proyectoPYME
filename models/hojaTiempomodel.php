@@ -43,6 +43,21 @@ class HojaTiempoModel extends Model{
         }
     }
 
+    public function getEstadoHojaTiempo(){
+        $cedula = $_SESSION['cedula'];
+
+        try{
+            $query = $this->db->connect()->prepare('SELECT hoja_de_tiempo.estado FROM hoja_de_tiempo INNER JOIN usuario ON usuario.cedula = hoja_de_tiempo.usuario WHERE usuario.cedula = :cedula AND hoja_de_tiempo.estado != 0;');
+            $query->execute(['cedula' => $cedula]);
+            $resultado = $query->fetch();
+            $estado = $resultado['estado'];
+            return $estado;
+
+        }catch(PDOException $e){
+            return $e;
+        }
+    }
+
     public function updateTareas($datos){
         //necesito agregar tiempos y cambiar estado a 1 = finalizadas
         $cedula = $_SESSION['cedula'];
@@ -61,9 +76,16 @@ class HojaTiempoModel extends Model{
         }
     }
 
-    public function updateHojaTiempo(){
+    public function updateHojaTiempoRevision(){
         //necesito agregar fecha de finalizacion y cambiar estado a 0 = inactiva
-        echo "aun no esta listo";
+        $cedula = $_SESSION['cedula'];
+        
+        try{
+            $query = $this->db->connect()->prepare('UPDATE hoja_de_tiempo SET hoja_de_tiempo.estado = 2, hoja_de_tiempo.fecha_finalizacion = NOW() WHERE hoja_de_tiempo.usuario = :cedula AND hoja_de_tiempo.estado = 1');
+            $query->execute(['cedula' => $cedula]);
+        }catch(PDOException $e){
+            return $e;
+        }
     }
 }
 

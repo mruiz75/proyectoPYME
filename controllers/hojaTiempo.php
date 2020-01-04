@@ -10,8 +10,13 @@ class HojaTiempo extends Controller{
 
     function render(){
         $tareas = $this->model->getTareas();
+        $estado = $this->model->getEstadoHojaTiempo();
         $this->view->tareas = $tareas;
-        $this->view->render('hojaTiempo/index');
+        if($estado == 1){
+            $this->view->render('hojaTiempo/index');
+        }else{
+            $this->view->render('hojaTiempo/indexRevision');
+        }
     }
 
     function enviarRevision(){
@@ -28,13 +33,13 @@ class HojaTiempo extends Controller{
             $this->model->updateTareas(['id' => $id, 'lunes' => $lunes, 'martes' => $martes, 'miercoles' => $miercoles, 'jueves' => $jueves, 'viernes' => $viernes]);
         }
 
-        //$this->model->updateHojaTiempo();
+        $this->model->updateHojaTiempoRevision();
         //crear un view que muestre la hoja de tiempo con las horas fijas (no inputs)
         //y que despliegue los comentarios abajo.
-        
-        $tareas = $this->model->getTareas();
-        $this->view->tareas = $tareas;
-        $this->view->render('hojaTiempo/index');
+        $this->render();        
+        // $tareas = $this->model->getTareas();
+        // $this->view->tareas = $tareas;
+        // $this->view->render('hojaTiempo/index');
     }
 }
 

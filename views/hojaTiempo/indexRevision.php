@@ -37,13 +37,13 @@
                                 $tarea = $row;
                         ?>
                         <tr>
-                            <td><input id="idTarea" name="id[]" type="text" value=<?php echo $tarea->id; ?>></td>
+                            <td><?php echo $tarea->id; ?></td>
                             <td><b><?php echo $tarea->nombre; ?></b><p><?php echo $tarea->descripcion; ?></p></td>
-                            <td><input name="lunes[]" type="text" value=<?php echo $tarea->lunes; ?>></td>
-                            <td><input name="martes[]" type="text" value=<?php echo $tarea->martes; ?>></td>
-                            <td><input name="miercoles[]" type="text" value=<?php echo $tarea->miercoles; ?>></td>
-                            <td><input name="jueves[]" type="text" value=<?php echo $tarea->jueves; ?>></td>
-                            <td><input name="viernes[]" type="text" value=<?php echo $tarea->viernes; ?>></td>
+                            <td><?php echo $tarea->lunes; ?></td>
+                            <td><?php echo $tarea->martes; ?></td>
+                            <td><?php echo $tarea->miercoles; ?></td>
+                            <td><?php echo $tarea->jueves; ?></td>
+                            <td><?php echo $tarea->viernes; ?></td>
                         </tr>
                         <?php }; ?>
                     </tbody>
@@ -59,7 +59,6 @@
                     echo "No hay comentario por mostrar";
                 }?>
                  </label>
-                <input type="submit" class="btn btn-outline-success float-right" value="Enviar a Revisión">
             </div>
         </form>
 
