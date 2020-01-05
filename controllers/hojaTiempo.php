@@ -37,9 +37,6 @@ class HojaTiempo extends Controller{
         //crear un view que muestre la hoja de tiempo con las horas fijas (no inputs)
         //y que despliegue los comentarios abajo.
         $this->render();        
-        // $tareas = $this->model->getTareas();
-        // $this->view->tareas = $tareas;
-        // $this->view->render('hojaTiempo/index');
     }
 }
 

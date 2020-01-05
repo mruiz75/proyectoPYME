@@ -37,13 +37,13 @@
                                 $tarea = $row;
                         ?>
                         <tr>
-                            <td><input id="idTarea" name="id[]" type="text" value=<?php echo $tarea->id; ?>></td>
+                            <td><input id="idTarea" name="id[]" type="text" value=<?php echo $tarea->id; ?> readonly="readonly"></td>
                             <td><b><?php echo $tarea->nombre; ?></b><p><?php echo $tarea->descripcion; ?></p></td>
-                            <td><input name="lunes[]" type="text" value=<?php echo $tarea->lunes; ?>></td>
-                            <td><input name="martes[]" type="text" value=<?php echo $tarea->martes; ?>></td>
-                            <td><input name="miercoles[]" type="text" value=<?php echo $tarea->miercoles; ?>></td>
-                            <td><input name="jueves[]" type="text" value=<?php echo $tarea->jueves; ?>></td>
-                            <td><input name="viernes[]" type="text" value=<?php echo $tarea->viernes; ?>></td>
+                            <td><input name="lunes[]" type="text" class="inputHora" value=<?php echo $tarea->lunes; ?>></td>
+                            <td><input name="martes[]" type="text" class="inputHora" value=<?php echo $tarea->martes; ?>></td>
+                            <td><input name="miercoles[]" type="text" class="inputHora" value=<?php echo $tarea->miercoles; ?>></td>
+                            <td><input name="jueves[]" type="text" class="inputHora" value=<?php echo $tarea->jueves; ?>></td>
+                            <td><input name="viernes[]" type="text" class="inputHora" value=<?php echo $tarea->viernes; ?>></td>
                         </tr>
                         <?php }; ?>
                     </tbody>

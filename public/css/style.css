@@ -19,3 +19,7 @@ body{
 	table-layout: fixed;
 	width: 100%;
 }
+
+.inputHora{
+	width: 40px;
+}

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="proyectoPYME/public/css/style.css">
     
     <title>Hoja de Tiempo</title>
 </head>
@@ -14,7 +14,47 @@
     <div class="container">
         <?php require 'views/header.php'; ?>
 
-        <h1 class="center">BANDEJA DE ENTRADA</h1>
+        <h1 class="center" id="tituloPagina">BANDEJA DE ENTRADA</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead table-primary">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Fecha Finalizacion</th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            include_once 'models/hojaTiempo.php';
+                            foreach($this->hojas as $row){
+                                $hoja = new HojaTiempo();
+                                $hoja = $row;
+                        ?>
+                        <form action="<?php echo constant('URL');?>bandejaEntrada/abrir" method="POST">
+                            <tr>
+                                <td><input type="text" name="hojaId" value=<?php echo $hoja->id; ?> readonly="readonly"></td>
+                                <td><b><?php echo $hoja->nombre; ?></b><p><?php echo " " . $hoja->apellido1; ?></p></td>
+                                <td><?php echo $hoja->fecha_finalizacion; ?></td>
+                                <td><input type="submit" class="btn btn-outline-info" value="Abrir"></td>
+                            </tr>
+                        </form>
+                        <?php }; ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <label class="comentariosHojaTiempo">COMENTARIOS:
+                <?php 
+                if(isset($hojaTiempo->comentarios)){
+                    echo $hojaTiempo->comentarios;
+                }else{
+                    echo "No hay comentario por mostrar";
+                }?>
+                 </label>
+            </div>
 
     </div>
 
