@@ -31,6 +31,9 @@
                     <a class="nav-link" href="#">Gestion de Usuarios</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="<?php echo constant('URL'); ?>tareas">Gestion de Tareas</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">Reportes</a>
                 </li>
             </ul>

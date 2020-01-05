@@ -1,11 +1,11 @@
 <?php
 
-define('URL', 'http://localhost:8080/proyectoPYME/');
+define('URL', 'http://localhost/proyectoPYME/');
 
 define('HOST', 'localhost');
 define('DB', 'pyme');
-define('USER', 'administrador');
-define('PASSWORD', '123');
+define('USER', 'jorge');
+define('PASSWORD', 'Jorge');
 define('CHARSET', 'utf8mb4');
 
 ?>

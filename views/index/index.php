@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="col-lg-12 inicio-box">
 					<h2>Inicio</h2>
-					<form action="" method="post">
+					<form action="<?php echo constant('URL') ?>index" method="post">
 						<?php
 							if(isset($this->errorLogin)){
 								echo $this->errorLogin;
@@ -27,6 +27,7 @@
 							<input type="password" name="contrasena" class="form-control" required>
 						</div>
 						<button type="submit" class="btn btn-primary">Log in</button>
+                        <a class="nav-link" href="<?php echo constant('URL'); ?>registro">Registrarse</a>
 					</form>
 				</div>
 			</div>

@@ -7,6 +7,7 @@ class App{
         $url = isset($_GET['url'])? $_GET['url']: null;
         $url = rtrim($url, '/');
         $url = explode('/', $url);
+
         if(empty($url[0])){
             $archivoController = 'controllers/index.php';
             require $archivoController;
@@ -14,7 +15,8 @@ class App{
             $controller->render();
             $controller->loadModel('index');
             return false;
-        }else{
+        }else {
+
             $archivoController = 'controllers/' . $url[0] . '.php';
         }
  
@@ -39,7 +41,7 @@ class App{
                 }
             }else{
                 // si se llama a un controlador
-                $controller->render();  
+                $controller->render();
             }
         }else{
             $controller = new Errores();

@@ -11,12 +11,13 @@ class User extends database{
     private $posicion;
 
     public function userExists($correo, $contrasena){
-        $md5pass = md5($contrasena);
 
-        $query = $this->connect()->prepare('SELECT * FROM usuario WHERE correo = :correo AND contrasena = :contrasena');
-        $query->execute(['correo' => $correo, 'contrasena' => $contrasena]);
+        $query = $this->connect()->prepare('SELECT * FROM usuario WHERE correo = :correo');
+        $query->execute(['correo' => $correo]);
 
-        if($query->rowCount()){
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        if(password_verify($contrasena,$result['contrasena'])){
             return true;
         }else{
             return false;
@@ -32,6 +33,21 @@ class User extends database{
             $this->nombre = $currentUser['nombre'];
             $this->posicion = $currentUser['posicion'];
         }
+    }
+
+    function insertUser($user) {
+
+        $query = $this->connect()->prepare('INSERT INTO usuario 
+                                                      VALUES(:cedula,:nombre,:apellido1,:apellido2,:correo,:contrasena,:telefono,1,1)');
+
+
+        return $query->execute(['cedula' => $user->getCedula(),
+            'nombre' => $user->getNombre(),
+            'apellido1' => $user->getApellido1(),
+            'apellido2' => $user->getApellido2(),
+            'correo' => $user->getCorreo(),
+            'contrasena' => $user->getContrasena(),
+            'telefono' => $user->getTelefono()]);
     }
 
     public function getNombre(){

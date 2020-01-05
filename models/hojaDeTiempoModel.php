@@ -7,7 +7,7 @@ class HojasDeTiempoModel extends Model{
 	}
 
 	public function insert(){
-		echo "Insertar datos"
+		echo "Insertar datos";
 	}
 }
 
