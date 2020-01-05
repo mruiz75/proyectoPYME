@@ -1,6 +1,7 @@
 <?php
 
 class Tarea{
+    public $id;
     public $nombre;
     public $descripcion;
     public $fechaLimite;
