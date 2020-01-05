@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="localhost:8080/proyectoPYME/public/css/style.css">
     
-    <title>Hoja de Tiempo</title>
+    <title>Gestión de Hoja de Tiempo</title>
 </head>
 <body>
     
@@ -15,13 +15,20 @@
         <?php require 'views/header.php'; ?>
 
         <h1 class="center" id="tituloPagina">HOJA DE TIEMPO</h1>
-        <form action="<?php echo constant('URL');?>hojaTiempo/enviarRevision" method="POST">
+        
+        <div>
+            <form action="<?php echo constant('URL'); ?>bandejaEntrada" method="POST">
+                <input type="submit" class="btn btn-outline-secondary" value="Volver a Bandeja de Entrada">
+            </form>
+        </div>
+
+        <form action="<?php echo constant('URL'); ?>bandejaEntrada/aceptar" method="POST">
             <div class="table-responsive">
                 <table class="table">
-                    <thead class="thead table-danger">
+                    <thead class="thead table-primary">
                         <tr>
-                            <th scope="col">ID</th>
                             <th scope="col">Tareas</th>
+                            <th scope="col">Fecha Limite</th>
                             <th scope="col">Lunes</th>
                             <th scope="col">Martes</th>
                             <th scope="col">Miercoles</th>
@@ -37,13 +44,15 @@
                                 $tarea = $row;
                         ?>
                         <tr>
-                            <td><input id="idTarea" name="id[]" type="text" value=<?php echo $tarea->id; ?> readonly="readonly"></td>
+                            <input name="hojaId" type="hidden" value=<?php echo $tarea->hoja_tiempo; ?>>
+                            <input name="id[]" type="hidden" value=<?php echo $tarea->id; ?>>
                             <td><b><?php echo $tarea->nombre; ?></b><p><?php echo $tarea->descripcion; ?></p></td>
-                            <td><input name="lunes[]" type="text" class="inputHora" value=<?php echo $tarea->lunes; ?>></td>
-                            <td><input name="martes[]" type="text" class="inputHora" value=<?php echo $tarea->martes; ?>></td>
-                            <td><input name="miercoles[]" type="text" class="inputHora" value=<?php echo $tarea->miercoles; ?>></td>
-                            <td><input name="jueves[]" type="text" class="inputHora" value=<?php echo $tarea->jueves; ?>></td>
-                            <td><input name="viernes[]" type="text" class="inputHora" value=<?php echo $tarea->viernes; ?>></td>
+                            <td><?php echo $tarea->fecha_limite; ?></td>
+                            <td><?php echo $tarea->lunes; ?></td>
+                            <td><?php echo $tarea->martes; ?></td>
+                            <td><?php echo $tarea->miercoles; ?></td>
+                            <td><?php echo $tarea->jueves; ?></td>
+                            <td><?php echo $tarea->viernes; ?></td>
                         </tr>
                         <?php }; ?>
                     </tbody>
@@ -51,15 +60,13 @@
             </div>
 
             <div>
-                <label class="comentariosHojaTiempo">COMENTARIOS:
-                <?php 
-                if(isset($this->comentarios)){
-                    echo $this->comentarios;
-                }else{
-                    echo "No hay comentario por mostrar";
-                }?>
-                 </label>
-                <input type="submit" class="btn btn-outline-success float-right" value="Enviar a Revisión">
+                <div>
+                    <input type="text" name="comentarios">
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-outline-success" value="Aceptar">
+                    <input type="submit" class="btn btn-outline-danger" value="Rechazar" formaction="<?php echo constant('URL'); ?>bandejaEntrada/rechazar">
+                </div>
             </div>
         </form>
 

@@ -43,15 +43,16 @@ class HojaTiempoModel extends Model{
         }
     }
 
-    public function getEstadoHojaTiempo(){
+    public function getInfoHojaTiempo(){
         $cedula = $_SESSION['cedula'];
 
         try{
-            $query = $this->db->connect()->prepare('SELECT hoja_de_tiempo.estado FROM hoja_de_tiempo INNER JOIN usuario ON usuario.cedula = hoja_de_tiempo.usuario WHERE usuario.cedula = :cedula AND hoja_de_tiempo.estado != 0;');
+            $query = $this->db->connect()->prepare('SELECT hoja_de_tiempo.estado, hoja_de_tiempo.comentarios FROM hoja_de_tiempo INNER JOIN usuario ON usuario.cedula = hoja_de_tiempo.usuario WHERE usuario.cedula = :cedula AND hoja_de_tiempo.estado != 0;');
             $query->execute(['cedula' => $cedula]);
             $resultado = $query->fetch();
             $estado = $resultado['estado'];
-            return $estado;
+            $comentarios = $resultado['comentarios'];
+            return [$estado, $comentarios];
 
         }catch(PDOException $e){
             return $e;
