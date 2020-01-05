@@ -15,6 +15,16 @@
         <?php require 'views/header.php'; ?>
 
         <h1 class="center" id="tituloPagina">HOJA DE TIEMPO</h1>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Agregar tarea
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <?php require 'libs/cargarTareas.php'?>
+            </div>
+        </div>
+
         <form action="<?php echo constant('URL');?>hojaTiempo/enviarRevision" method="POST">
             <div class="table-responsive">
                 <table class="table">

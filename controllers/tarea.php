@@ -1,9 +1,8 @@
 <?php
 include_once 'models/tarea.php';
-include_once 'models/tareaModel.php';
 include_once 'models/proyectoModel.php';
 
-class Tareas extends Controller {
+class Tarea extends Controller {
 
     function __construct() {
         parent::__construct();
@@ -22,9 +21,7 @@ class Tareas extends Controller {
 
                $tarea->proyecto = $id;
 
-               $tareaModel = new TareaModel();
-
-               $resultado = $tareaModel->insert($tarea);
+               $resultado = $this->model->insert($tarea);
 
                if ($resultado) {
                    $this->view->message = 'Tarea insertada correctamente';
@@ -38,6 +35,14 @@ class Tareas extends Controller {
         else {
             $this->view->render('tareas/index');
         }
+    }
+
+    function asignar($array) {
+        $nombre = $array[1];
+
+        $this->model->updateHojaTiempo($nombre);
+
+        require constant('URL').'hojaTiempo';
     }
 
 }

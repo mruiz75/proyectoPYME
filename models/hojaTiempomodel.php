@@ -27,7 +27,7 @@ class HojaTiempoModel extends Model{
                 $item->descripcion  = $row['descripcion'];
                 $item->fecha_limite = $row['fecha_limite'];
                 $item->proyecto     = $row['proyecto'];
-                $item->hoja_tiempo  = $row['hoja_tiempo'];
+                $item->hojaTiempo   = $row['hoja_tiempo'];
                 $item->estado       = $row['estado'];
                 $item->lunes        = $row['lunes'];
                 $item->martes       = $row['martes'];
@@ -86,6 +86,18 @@ class HojaTiempoModel extends Model{
         }catch(PDOException $e){
             return $e;
         }
+    }
+
+    public function getId() {
+        $cedula = $_SESSION['cedula'];
+
+        $query = $this->db->connect()->prepare('SELECT id FROM hoja_de_tiempo WHERE usuario = :cedula AND estado = 1');
+
+        $query->execute(['cedula'=>$cedula]);
+
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $result['id'];
     }
 }
 
