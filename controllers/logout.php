@@ -12,8 +12,7 @@ class Logout extends Controller{
     function render(){
         $userSession = new UserSession();
         $userSession->closeSession();
-        $this->view->render('index/index');
-        //header("location: ../index.php");
+        header('location:'.constant('URL').'index');
     }
 }
 

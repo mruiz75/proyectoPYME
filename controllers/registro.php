@@ -3,12 +3,20 @@
 include_once 'models/userModel.php';
 include_once 'libs/user.php';
 
+/**
+ * Class Registro
+ * Controller para el registro de un usuario
+ */
 class Registro extends Controller {
 
     function __construct() {
         parent::__construct();
     }
 
+    /**
+     * Funcion principal del controller que muestra la vista
+     * o llama al modelo para registrar el usuario en la base
+     */
     function render() {
 
         if (isset($_POST['cedula'])) {

@@ -48,6 +48,7 @@
                         </div>
 						<button type="submit" class="btn btn-primary">Registrarse</button>
 					</form>
+                    <a class="nav-link" href="<?php echo constant('URL'); ?>index">Volver</a>
 				</div>
 			</div>
 		</div>

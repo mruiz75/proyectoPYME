@@ -27,7 +27,7 @@
 							<input type="password" name="contrasena" class="form-control" required>
 						</div>
 						<button type="submit" class="btn btn-primary">Log in</button>
-                        <a class="nav-link" href="<?php echo constant('URL'); ?>registro">Registrarse</a>
+                        <a class="btn btn-primary" href="<?php echo constant('URL'); ?>registro">Registrarse</a>
 					</form>
 				</div>
 			</div>

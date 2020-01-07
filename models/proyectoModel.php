@@ -1,6 +1,11 @@
 <?php
 include_once 'libs/database.php';
 
+/**
+ * Class ProyectoModel
+ * Clase para interacturar con los objetos de proyecto en
+ * la base de datos este no tiene un controller asignado
+ */
 class ProyectoModel {
 
     function getId($nombre) {

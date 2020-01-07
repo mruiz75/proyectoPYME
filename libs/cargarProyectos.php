@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Archivo para mostrar los nombres de proyectos en el
+ * select del formulario de registro de un usuario
+ */
+
 include_once 'database.php';
 
 $conexion = new Database();

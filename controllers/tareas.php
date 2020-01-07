@@ -2,12 +2,22 @@
 include_once 'models/tarea.php';
 include_once 'models/proyectoModel.php';
 
+/**
+ * Class Tareas
+ * Controller para la gestion de tareas
+ */
 class Tareas extends Controller {
 
     function __construct() {
         parent::__construct();
     }
 
+    /**
+     * Funcion principal del controller que muestra la vista
+     * o inserta una tarea llamando al modelo
+     * utiliza el archivo ProyectoModel para obtener el id del proyecto
+     * al que pertenece la tarea
+     */
     function render() {
 
         if (isset($_POST['descripcion'])) {
@@ -37,12 +47,20 @@ class Tareas extends Controller {
         }
     }
 
+    /**
+     * Funcion que asigna una tarea a un usuario, es decir
+     * asigna la tarea a la hoja de tiempo que pertenece a el usuario
+     * @param $array ArrayObject Una lista con los parametros de la siguiente forma
+     * en la posicion uno se encuentra el nombre de la tarea a asignar
+     * en la posicion dos el id de la hoja de tiempo que pertence al usuario
+     */
     function asignar($array) {
         $nombre = $array[0];
+        $id = $array[1];
 
-        $this->model->updateHojaTiempo($nombre);
+        $this->model->updateHojaTiempo($nombre, $id);
 
-        require constant('URL').'hojaTiempo';
+        header('Location: '.constant('URL').'hojaTiempo');
     }
 
 }
