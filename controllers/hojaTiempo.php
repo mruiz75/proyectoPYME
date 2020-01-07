@@ -10,9 +10,10 @@ class HojaTiempo extends Controller{
 
     function render(){
         $tareas = $this->model->getTareas();
-        $estado = $this->model->getEstadoHojaTiempo();
+        $datos = $this->model->getInfoHojaTiempo();
         $this->view->tareas = $tareas;
-        if($estado == 1){
+        $this->view->comentarios = $datos[1];
+        if($datos[0] == 1){
             $this->view->render('hojaTiempo/index');
         }else{
             $this->view->render('hojaTiempo/indexRevision');
