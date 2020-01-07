@@ -1,7 +1,12 @@
 <?php
-require_once 'hojaTiempomodel.php';
 
-class TareaModel extends Model {
+
+class TareasModel extends Model {
+
+    public function __construct(){
+        parent::__construct();
+    }
+
 
     public function insert($tarea) {
 
@@ -15,6 +20,8 @@ class TareaModel extends Model {
 
 
     }
+
+
 
     public function updateHojaTiempo($nombre) {
         $hojaTiempoModel = new HojaTiempoModel();

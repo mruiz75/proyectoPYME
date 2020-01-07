@@ -25,7 +25,7 @@ class HojaTiempoModel extends Model{
                 $item->id           = $row['id'];
                 $item->nombre       = $row['nombre'];
                 $item->descripcion  = $row['descripcion'];
-                $item->fecha_limite = $row['fecha_limite'];
+                $item->fechaLimite  = $row['fecha_limite'];
                 $item->proyecto     = $row['proyecto'];
                 $item->hojaTiempo   = $row['hoja_tiempo'];
                 $item->estado       = $row['estado'];
