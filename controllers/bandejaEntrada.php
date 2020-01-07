@@ -13,8 +13,33 @@ class BandejaEntrada extends Controller{
 	}
 
 	function abrir(){
-		//$hojaId = $_POST['hojaId'];
-		
+		$hojaId = $_POST['hojaId'];
+		$tareas = $this->model->getTareas($hojaId);
+		$this->view->tareas = $tareas;
+		$this->view->render('bandejaEntrada/gestionHoja');
+	}
+
+	function aceptar(){
+		$count = count($_POST['id']);
+		$hojaId = $_POST['hojaId'];
+		$comentarios = $_POST['comentarios'];
+		$nuevoEstado = 0;
+
+        for($i=0; $i < $count; $i++){
+			$id = $_POST['id'][$i];
+            $this->model->updateTarea($id);
+		}
+		$this->model->updateHojaTiempo(['hojaId' => $hojaId, 'comentarios' => $comentarios, 'nuevoEstado' => $nuevoEstado]);
+		$this->render();
+	}
+
+	function rechazar(){
+		$hojaId = $_POST['hojaId'];
+		$comentarios = $_POST['comentarios'];
+		$nuevoEstado = 1;
+
+		$this->model->updateHojaTiempo(['hojaId' => $hojaId, 'comentarios' => $comentarios, 'nuevoEstado' => $nuevoEstado]);
+		$this->render();
 	}
 }
 

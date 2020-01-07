@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="proyectoPYME/public/css/style.css">
     
-    <title>Hoja de Tiempo</title>
+    <title>Bandeja de Entrada</title>
 </head>
 <body>
     
@@ -45,16 +45,7 @@
                 </table>
             </div>
 
-            <div>
-                <label class="comentariosHojaTiempo">COMENTARIOS:
-                <?php 
-                if(isset($hojaTiempo->comentarios)){
-                    echo $hojaTiempo->comentarios;
-                }else{
-                    echo "No hay comentario por mostrar";
-                }?>
-                 </label>
-            </div>
+
 
     </div>
 
