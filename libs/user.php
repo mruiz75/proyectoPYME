@@ -38,7 +38,7 @@ class User extends database{
     function insertUser($user) {
 
         $query = $this->connect()->prepare('INSERT INTO usuario 
-                                                      VALUES(:cedula,:nombre,:apellido1,:apellido2,:correo,:contrasena,:telefono,1,1)');
+                                                      VALUES(:cedula,:nombre,:apellido1,:apellido2,:correo,:contrasena,:telefono,:departamento,:posicion)');
 
 
         return $query->execute(['cedula' => $user->getCedula(),
@@ -47,7 +47,9 @@ class User extends database{
             'apellido2' => $user->getApellido2(),
             'correo' => $user->getCorreo(),
             'contrasena' => $user->getContrasena(),
-            'telefono' => $user->getTelefono()]);
+            'telefono' => $user->getTelefono(),
+            'departamento' => $user->getDepartamento(),
+            'posicion' => $user->getPosicion()]);
     }
 
     public function getNombre(){

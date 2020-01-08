@@ -46,6 +46,26 @@
                             <label>Telefono</label>
                             <input type="text" name="telefono" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                            <label>Nivel</label>
+                            <select class="form-group" name="nivel">
+                                <option>CEO</option>
+                                <option>Manager</option>
+                                <option>Empleado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Departamento</label>
+                            <select class="form-group" name="departamento">
+                                <?php
+
+                                foreach ($this->departamentos as &$departamento) {
+                                    echo "<option>".$departamento."</option>";
+                                }
+
+                                ?>
+                            </select>
+                        </div>
 						<button type="submit" class="btn btn-primary">Registrarse</button>
 					</form>
                     <a class="nav-link" href="<?php echo constant('URL'); ?>index">Volver</a>

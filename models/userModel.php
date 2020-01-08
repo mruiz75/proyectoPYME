@@ -10,8 +10,10 @@ class UserModel {
     private $correo;
     private $contrasena;
     private $telefono;
+    private $departamento;
+    private $posicion;
 
-    function __construct($cedula,$nombre,$apellido1,$apellido2,$correo,$contrasena,$telefono) {
+    function __construct($cedula,$nombre,$apellido1,$apellido2,$correo,$contrasena,$telefono,$departamento,$posicion) {
         $this->cedula = $cedula;
         $this->nombre = $nombre;
         $this->apellido1 = $apellido1;
@@ -19,6 +21,8 @@ class UserModel {
         $this->correo = $correo;
         $this->contrasena = $contrasena;
         $this->telefono = $telefono;
+        $this->departamento = $departamento;
+        $this->posicion = $posicion;
     }
 
     /**
@@ -76,6 +80,24 @@ class UserModel {
     {
         return $this->telefono;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDepartamento()
+    {
+        return $this->departamento;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPosicion()
+    {
+        return $this->posicion;
+    }
+
+
 
 
 
