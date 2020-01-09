@@ -42,4 +42,24 @@ class TareasModel extends Model {
         $query->execute(['id'=>$id,'nombre'=>$nombre]);
     }
 
+    public function cargarTareasABorrar() {
+        $query = $this->db->connect()->prepare('SELECT nombre FROM tarea WHERE hoja_tiempo IS NULL AND estado = 0');
+
+        $query->execute();
+
+        $nombres = [];
+
+        while ($registro=$query->fetch(PDO::FETCH_ASSOC)) {
+            array_push($nombres,$registro['nombre']);
+        }
+
+        return $nombres;
+    }
+
+    public function borrarTarea($nombre) {
+        $query = $this->db->connect()->prepare('DELETE FROM tarea WHERE nombre = :nombre');
+
+        $query->execute(['nombre'=>$nombre]);
+    }
+
 }

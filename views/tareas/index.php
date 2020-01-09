@@ -19,19 +19,19 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Nombre</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Descripcion</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="descripcion" placeholder="Descripcion">
+                <input type="text" class="form-control" name="descripcion" placeholder="Descripcion" required>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Fecha limite</label>
             <div class="col-sm-10">
-                <input type="date" class="form-control" name="fecha">
+                <input type="date" class="form-control" name="fecha" required>
             </div>
         </div>
         <div class="form-group row">
@@ -45,6 +45,29 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">Crear tarea</button>
+            </div>
+        </div>
+    </form>
+
+    <h1 class="center">Borrar tarea</h1>
+    <form action="<?php echo constant('URL'); ?>tareas/borrar" method="post">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Nombre</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="tarea">
+                    <?php
+
+                    foreach ($this->tareas as &$tarea) {
+                        echo "<option>".$tarea."</option>";
+                    }
+
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Borrar tarea</button>
             </div>
         </div>
     </form>

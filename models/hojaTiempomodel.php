@@ -69,7 +69,7 @@ class HojaTiempoModel extends Model{
         $jueves = $datos['jueves'];
         $viernes = $datos['viernes'];
         try{
-            $query = $this->db->connect()->prepare('UPDATE tarea SET tarea.lunes = :lunes, tarea.martes = :martes, tarea.miercoles = :miercoles, tarea.jueves = :jueves, tarea.viernes = :viernes WHERE tarea.id = CAST(:id AS INT) AND tarea.hoja_tiempo = (SELECT hoja_de_tiempo.id FROM usuario INNER JOIN hoja_de_tiempo ON usuario.cedula = hoja_de_tiempo.usuario where usuario.cedula = :cedula AND hoja_de_tiempo.estado = 1)');
+            $query = $this->db->connect()->prepare('UPDATE tarea SET tarea.lunes = :lunes, tarea.martes = :martes, tarea.miercoles = :miercoles, tarea.jueves = :jueves, tarea.viernes = :viernes WHERE tarea.id = :id AND tarea.hoja_tiempo = (SELECT hoja_de_tiempo.id FROM usuario INNER JOIN hoja_de_tiempo ON usuario.cedula = hoja_de_tiempo.usuario where usuario.cedula = :cedula AND hoja_de_tiempo.estado = 1)');
             $query->execute(['id' => $id, 'lunes' => $lunes, 'martes' => $martes, 'miercoles' => $miercoles, 'jueves' => $jueves, 'viernes' => $viernes, 'cedula' => $cedula]);
         
         }catch(PDOException $e){

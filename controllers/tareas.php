@@ -35,14 +35,17 @@ class Tareas extends Controller {
 
             if ($resultado) {
                 $this->view->message = 'Tarea insertada correctamente';
+                $this->view->tareas = $this->mostrarTareas();
                 $this->view->render('tareas/index');
             }
             else {
                 $this->view->message = 'Hubo un error al insertar la tarea';
+                $this->view->tareas = $this->mostrarTareas();
                 $this->view->render('tareas/index');
             }
         }
         else {
+            $this->view->tareas = $this->mostrarTareas();
             $this->view->render('tareas/index');
         }
     }
@@ -61,6 +64,20 @@ class Tareas extends Controller {
         $this->model->updateHojaTiempo($nombre, $id);
 
         header('Location: '.constant('URL').'hojaTiempo');
+    }
+
+    function mostrarTareas() {
+        $tareas = $this->model->cargarTareasABorrar();
+
+        return $tareas;
+    }
+
+    function borrar() {
+        $this->model->borrarTarea($_POST['tarea']);
+
+        $this->view->message = 'Tarea '.$_POST['tarea'].' borrada correctamente';
+        $this->view->tareas = $this->mostrarTareas();
+        $this->view->render('tareas/index');
     }
 
 }
