@@ -12,7 +12,7 @@
     <title>Colors</title>
 </head>
 <body>
-
+    <?php session_start()?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand disabled" href="<?php echo constant('URL'); ?>inicio" aria-disabled="true">LOGO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,14 +24,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo constant('URL'); ?>hojaTiempo">Hoja de Tiempo</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo constant('URL'); ?>bandejaEntrada">Bandeja de Entrada</a>
-                </li>
+                <?php
+                    if ($_SESSION['posicion'] != 2) {?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo constant('URL'); ?>bandejaEntrada">Bandeja de Entrada</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo constant('URL'); ?>tareas">Gestion de Tareas</a>
+                        </li>
+                <?php
+                    }?>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Gestion de Usuarios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo constant('URL'); ?>tareas">Gestion de Tareas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Reportes</a>
