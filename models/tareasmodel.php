@@ -62,4 +62,23 @@ class TareasModel extends Model {
         $query->execute(['nombre'=>$nombre]);
     }
 
+    public function mostrarUsuarios() {
+        $query = $this->db->connect()->prepare('SELECT u.nombre, u.apellido1, u.apellido2 
+                                                          FROM usuario u 
+                                                          INNER JOIN hoja_de_tiempo h ON u.cedula = h.usuario
+                                                          WHERE h.estado = 1');
+
+        $query->execute();
+
+        $nombres = [];
+        $nombre = "";
+
+        while ($registro=$query->fetch(PDO::FETCH_ASSOC)) {
+            $nombre = $registro['nombre']." ".$registro['apellido1']." ".$registro['apellido2'];
+            array_push($nombres,$nombre);
+        }
+
+        return $nombres;
+    }
+
 }
