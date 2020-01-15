@@ -94,6 +94,24 @@ class BandejaEntradaModel extends Model{
         }
     }
 
+    public function getHojaTiempo($id) {
+        try {
+            $query = $this->db->connect()->prepare('SELECT * FROM hoja_de_tiempo WHERE id = :id');
+            $query->execute(['id'=>$id]);
+
+            $resultado = $query->fetch();
+
+            return [$resultado['lunes'],
+                    $resultado['martes'],
+                    $resultado['miercoles'],
+                    $resultado['jueves'],
+                    $resultado['viernes']];
+        }
+        catch(PDOException $e){
+            return $e;
+        }
+    }
+
 }
 
 ?>

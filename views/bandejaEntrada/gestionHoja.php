@@ -21,11 +21,19 @@
                 <input type="submit" class="btn btn-outline-secondary" value="Volver a Bandeja de Entrada">
             </form>
         </div>
-
+        <br>
         <form action="<?php echo constant('URL'); ?>bandejaEntrada/aceptar" method="POST">
             <div class="table-responsive">
                 <table class="table">
                     <thead class="thead table-primary">
+                        <tr>
+                            <th scope="col" colspan="2">Horas libres</th>
+                            <th scope="col"><?php echo $this->horas[0]?></th>
+                            <th scope="col"><?php echo $this->horas[1]?></th>
+                            <th scope="col"><?php echo $this->horas[2]?></th>
+                            <th scope="col"><?php echo $this->horas[3]?></th>
+                            <th scope="col"><?php echo $this->horas[4]?></th>
+                        </tr>
                         <tr>
                             <th scope="col">Tareas</th>
                             <th scope="col">Fecha Limite</th>
@@ -61,8 +69,10 @@
 
             <div>
                 <div>
-                    <input type="text" name="comentarios">
+                    Total Horas Libres: <?php echo $this->totalHoras?><br>
+                    Comentarios: <input type="text" name="comentarios">
                 </div>
+                <br>
                 <div>
                     <input type="submit" class="btn btn-outline-success" value="Aceptar">
                     <input type="submit" class="btn btn-outline-danger" value="Rechazar" formaction="<?php echo constant('URL'); ?>bandejaEntrada/rechazar">

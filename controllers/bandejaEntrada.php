@@ -15,6 +15,15 @@ class BandejaEntrada extends Controller{
 	function abrir(){
 		$hojaId = $_POST['hojaId'];
 		$tareas = $this->model->getTareas($hojaId);
+		$horas = $this->model->getHojaTiempo($hojaId);
+
+		$totalHoras = 0;
+        foreach ($horas as &$hora) {
+            $totalHoras += $hora;
+		}
+
+        $this->view->horas = $horas;
+        $this->view->totalHoras = $totalHoras;
 		$this->view->tareas = $tareas;
 		$this->view->render('bandejaEntrada/gestionHoja');
 	}

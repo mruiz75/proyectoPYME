@@ -30,13 +30,20 @@
                             <a class="nav-link" href="<?php echo constant('URL'); ?>bandejaEntrada">Bandeja de Entrada</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="<?php echo constant('URL'); ?>proyectos">Gestion de Proyectos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo constant('URL'); ?>usuarios">Gestion de Usuarios</a>
+                        </li>
+                <?php
+                    }
+                    if ($_SESSION['posicion'] != 2 || $_SESSION['administrador'] > 0) {?>
+                        <li class="nav-item">
                             <a class="nav-link" href="<?php echo constant('URL'); ?>tareas">Gestion de Tareas</a>
                         </li>
                 <?php
-                    }?>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Gestion de Usuarios</a>
-                </li>
+                    }
+                    ?>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Reportes</a>
                 </li>

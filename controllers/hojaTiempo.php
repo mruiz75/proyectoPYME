@@ -11,8 +11,15 @@ class HojaTiempo extends Controller{
     function render(){
         $tareas = $this->model->getTareas();
         $datos = $this->model->getInfoHojaTiempo();
+        $this->view->tareasMostrar = $this->model->cargarTareas();
+        $this->view->id = $this->model->getId();
         $this->view->tareas = $tareas;
         $this->view->comentarios = $datos[1];
+        $this->view->lunes = $datos[2];
+        $this->view->martes = $datos[3];
+        $this->view->miercoles = $datos[4];
+        $this->view->jueves = $datos[5];
+        $this->view->viernes = $datos[6];
         if($datos[0] == 1){
             $this->view->render('hojaTiempo/index');
         }else{
@@ -34,7 +41,7 @@ class HojaTiempo extends Controller{
             $this->model->updateTareas(['id' => $id, 'lunes' => $lunes, 'martes' => $martes, 'miercoles' => $miercoles, 'jueves' => $jueves, 'viernes' => $viernes]);
         }
 
-        $this->model->updateHojaTiempoRevision();
+        $this->model->updateHojaTiempoRevision($_POST['libre']);
         //crear un view que muestre la hoja de tiempo con las horas fijas (no inputs)
         //y que despliegue los comentarios abajo.
         $this->render();        

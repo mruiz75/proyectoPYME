@@ -9,6 +9,7 @@ class User extends database{
     private $correo;
     private $contrasena;
     private $posicion;
+    private $departamento;
 
     public function userExists($correo, $contrasena){
 
@@ -32,6 +33,7 @@ class User extends database{
             $this->cedula = $currentUser['cedula'];
             $this->nombre = $currentUser['nombre'];
             $this->posicion = $currentUser['posicion'];
+            $this->departamento = $currentUser['departamento'];
         }
     }
 
@@ -52,6 +54,14 @@ class User extends database{
             'posicion' => $user->getPosicion()]);
     }
 
+    function getAdministrador() {
+        $query = $this->connect()->prepare('SELECT * FROM proyecto WHERE administrador = :cedula');
+
+        $query->execute(['cedula'=>$this->cedula]);
+
+        return $query->rowCount();
+    }
+
     public function getNombre(){
         return $this->nombre;
     }
@@ -62,6 +72,10 @@ class User extends database{
 
     public function getPosicion(){
         return $this->posicion;
+    }
+
+    public function getDepartamento(){
+        return $this->departamento;
     }
 
 }

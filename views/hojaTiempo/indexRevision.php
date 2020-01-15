@@ -20,6 +20,24 @@
                 <table class="table">
                     <thead class="thead table-danger">
                         <tr>
+                            <th scope="col" colspan="2">Horas libres</th>
+                            <th scope="col">
+                                <?php echo $this->lunes ?>
+                            </th>
+                            <th scope="col">
+                                <?php echo $this->martes ?>
+                            </th>
+                            <th scope="col">
+                                <?php echo $this->miercoles ?>
+                            </th>
+                            <th scope="col">
+                                <?php echo $this->jueves ?>
+                            </th>
+                            <th scope="col">
+                               <?php echo $this->viernes ?>
+                            </th>
+                        </tr>
+                        <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Tareas</th>
                             <th scope="col">Lunes</th>

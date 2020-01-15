@@ -47,12 +47,17 @@ class HojaTiempoModel extends Model{
         $cedula = $_SESSION['cedula'];
 
         try{
-            $query = $this->db->connect()->prepare('SELECT hoja_de_tiempo.estado, hoja_de_tiempo.comentarios FROM hoja_de_tiempo INNER JOIN usuario ON usuario.cedula = hoja_de_tiempo.usuario WHERE usuario.cedula = :cedula AND hoja_de_tiempo.estado != 0;');
+            $query = $this->db->connect()->prepare('SELECT * FROM hoja_de_tiempo INNER JOIN usuario ON usuario.cedula = hoja_de_tiempo.usuario WHERE usuario.cedula = :cedula AND hoja_de_tiempo.estado != 0;');
             $query->execute(['cedula' => $cedula]);
             $resultado = $query->fetch();
             $estado = $resultado['estado'];
             $comentarios = $resultado['comentarios'];
-            return [$estado, $comentarios];
+            $lunes = $resultado['lunes'];
+            $martes = $resultado['martes'];
+            $miercoles = $resultado['miercoles'];
+            $jueves = $resultado['jueves'];
+            $viernes = $resultado['viernes'];
+            return [$estado,$comentarios,$lunes,$martes,$miercoles,$jueves,$viernes];
 
         }catch(PDOException $e){
             return $e;
@@ -77,14 +82,22 @@ class HojaTiempoModel extends Model{
         }
     }
 
-    public function updateHojaTiempoRevision(){
+    public function updateHojaTiempoRevision($dias){
         //necesito agregar fecha de finalizacion y cambiar estado a 0 = inactiva
         $cedula = $_SESSION['cedula'];
         
         try{
-            $query = $this->db->connect()->prepare('UPDATE hoja_de_tiempo SET hoja_de_tiempo.estado = 2, hoja_de_tiempo.fecha_finalizacion = NOW() WHERE hoja_de_tiempo.usuario = :cedula AND hoja_de_tiempo.estado = 1');
-            $query->execute(['cedula' => $cedula]);
+            $query = $this->db->connect()->prepare('UPDATE hoja_de_tiempo 
+                                                            SET estado = 2, fecha_finalizacion = NOW(), lunes = :lunes, martes = :martes, miercoles = :miercoles, jueves = :jueves, viernes = :viernes 
+                                                            WHERE usuario = :cedula AND estado = 1');
+            $query->execute(['cedula' => $cedula,
+                             'lunes'=>$dias[0],
+                             'martes'=>$dias[1],
+                             'miercoles'=>$dias[2],
+                             'jueves'=>$dias[3],
+                             'viernes'=>$dias[4]]);
         }catch(PDOException $e){
+            echo $e;
             return $e;
         }
     }
@@ -99,6 +112,29 @@ class HojaTiempoModel extends Model{
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
         return $result['id'];
+    }
+
+    public function cargarTareas() {
+        try{
+            $query = $this->db->connect()->prepare('SELECT t.nombre 
+                                                  FROM tarea t 
+                                                  INNER JOIN proyecto p ON t.proyecto = p.id
+                                                  INNER JOIN usuario u ON p.departamento = u.departamento
+                                                  WHERE t.hoja_tiempo IS NULL AND t.estado = 0 AND u.cedula = :cedula');
+
+            $query->execute(['cedula'=>$_SESSION['cedula']]);
+
+            $tareas = [];
+
+            while ($result=$query->fetch()) {
+                array_push($tareas,$result['nombre']);
+            }
+
+            return $tareas;
+        }
+        catch(PDOException $e){
+            return $e;
+        }
     }
 }
 

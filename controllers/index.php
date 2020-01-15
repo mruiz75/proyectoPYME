@@ -37,6 +37,8 @@ class Index extends Controller{
                 $userSession->setCurrentNombre($user->getNombre());
                 $userSession->setCurrentPosicion($user->getPosicion());
                 $userSession->setCurrentCedula($user->getCedula());
+                $userSession->setCurrentDepartamento($user->getDepartamento());
+                $userSession->setAdministrador($user->getAdministrador());
                 $this->view->user = $user;
                 $this->view->render('inicio/index');
             

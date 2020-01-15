@@ -1,6 +1,5 @@
 <?php
 include_once 'models/tarea.php';
-include_once 'models/proyectoModel.php';
 
 /**
  * Class Tareas
@@ -19,43 +18,52 @@ class Tareas extends Controller {
      * al que pertenece la tarea
      */
     function render() {
+        $this->view->tareas = $this->model->cargarTareasABorrar();
+        $this->view->proyectos = $this->model->cargarProyectos();
+        $this->view->usuarios = $this->model->cargarUsuarios();
+        $this->view->render('gestionTareas/index');
+    }
 
-        if (isset($_POST['descripcion'])) {
-            $tarea = new Tarea();
-            $tarea->nombre = $_POST['nombre'];
-            $tarea->descripcion = $_POST['descripcion'];
+    function insertar() {
+        $tarea = new Tarea();
+        $tarea->nombre = $_POST['nombre'];
+        $tarea->descripcion = $_POST['descripcion'];
+
+        if (date('Y-m-d') > $_POST['fecha']) {
+            $this->view->message = 'La fecha de caducidad debe ser mayor a la fecha actual';
+            $this->view->tareas = $this->model->cargarTareasABorrar();
+            $this->view->proyectos = $this->model->cargarProyectos();
+            $this->view->usuarios = $this->model->cargarUsuarios();
+            $this->view->render('gestionTareas/index');
+        }
+
+        else {
             $tarea->fechaLimite = $_POST['fecha'];
 
-            $proyectoModel = new ProyectoModel();
-            $id = $proyectoModel->getId($_POST['proyecto']);
-
+            $id = $this->model->getIdFromProyecto($_POST['proyecto']);
             $tarea->proyecto = $id;
 
-            $resultado = $this->model->insert($tarea);
+            if ($_POST['usuario'] != "Sin asignar") {
+                $nombreCompleto = explode(" ", $_POST['usuario']);
+                $resultado = $this->model->insert($tarea, $nombreCompleto);
+            } else {
+                $resultado = $this->model->insert($tarea, $_POST['usuario']);
+            }
 
-            if ($resultado) {
+            if ($resultado == True) {
                 $this->view->message = 'Tarea insertada correctamente';
-                $this->view->tareas = $this->mostrarTareas();
-<<<<<<< HEAD
-                $this->view->usuarios = $this->mostrarUsuarios();
-                $this->view->render('tareas/index');
+                $this->view->tareas = $this->model->cargarTareasABorrar();
+                $this->view->proyectos = $this->model->cargarProyectos();
+                $this->view->usuarios = $this->model->cargarUsuarios();
+                $this->view->render('gestionTareas/index');
 
-            }
-            else {
+            } else {
                 $this->view->message = 'Hubo un error al insertar la tarea';
-                $this->view->tareas = $this->mostrarTareas();
-<<<<<<< HEAD
-                $this->view->usuarios = $this->mostrarUsuarios();
-                $this->view->render('tareas/index');
-
+                $this->view->tareas = $this->model->cargarTareasABorrar();
+                $this->view->proyectos = $this->model->cargarProyectos();
+                $this->view->usuarios = $this->model->cargarUsuarios();
+                $this->view->render('gestionTareas/index');
             }
-        }
-        else {
-            $this->view->tareas = $this->mostrarTareas();
-<<<<<<< HEAD
-            $this->view->usuarios = $this->mostrarUsuarios();
-            $this->view->render('tareas/index');
-
         }
     }
 
@@ -75,12 +83,6 @@ class Tareas extends Controller {
         header('Location: '.constant('URL').'hojaTiempo');
     }
 
-    function mostrarTareas() {
-        $tareas = $this->model->cargarTareasABorrar();
-
-        return $tareas;
-    }
-
     function borrar() {
         $this->model->borrarTarea($_POST['tarea']);
 
@@ -88,13 +90,4 @@ class Tareas extends Controller {
         $this->view->tareas = $this->mostrarTareas();
         $this->view->render('tareas/index');
     }
-
-    function mostrarUsuarios() {
-<<<<<<< HEAD
-        $usuarios = $this->model->mostrarUsuarios();
-
-        return $usuarios;
-
-    }
-
 }

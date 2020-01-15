@@ -38,9 +38,17 @@ class UserSession{
         return $_SESSION['cedula'];
     }
 
+    public function setCurrentDepartamento($departamento) {
+        $_SESSION['departamento'] = $departamento;
+    }
+
     public function closeSession(){
         session_unset();
         session_destroy();
+    }
+
+    public function setAdministrador($bandera) {
+        $_SESSION['administrador'] = $bandera;
     }
 }
 

@@ -14,7 +14,78 @@
     <div class="container">
         <?php require 'views/header.php'; ?>
 
-        <h1 class="center">BANDEJA DE ENTRADA</h1>
+        <h1 class="center">Cambiar departamento</h1>
+
+        <form action="<?php echo constant('URL'); ?>usuarios/cambiarDepartamento" method="post">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Usuario</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="usuario">
+                        <?php
+                        foreach ($this->usuarios as &$usuario) {
+                            echo "<option>".$usuario."</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Departamento</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="departamento">
+                        <?php
+                        foreach ($this->departamentos as &$departamento) {
+                            echo "<option>".$departamento."</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Cambiar departamento</button>
+                </div>
+            </div>
+        </form>
+
+        <h1 class="center">Ascender o degradar usuario</h1>
+        <form action="<?php echo constant('URL'); ?>usuarios/ascender" method="post">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Usuario</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="usuario">
+                        <?php
+                        foreach ($this->usuarios as &$usuario) {
+                            echo "<option>".$usuario."</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Puesto</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="puesto">
+                        <?php
+                        foreach ($this->puestos as &$puesto) {
+                            echo "<option>".$puesto."</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+        </form>
+
+        <?php
+        if (isset($this->message)) {
+            echo $this->message;
+        }
+        ?>
 
     </div>
 

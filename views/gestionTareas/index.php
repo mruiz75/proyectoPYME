@@ -15,7 +15,7 @@
     <?php require 'views/header.php'; ?>
 
     <h1 class="center">Crear tarea</h1>
-    <form action="<?php echo constant('URL'); ?>tareas" method="post">
+    <form action="<?php echo constant('URL'); ?>tareas/insertar" method="post">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Nombre</label>
             <div class="col-sm-10">
@@ -38,7 +38,26 @@
             <label class="col-sm-2 col-form-label">Proyecto</label>
             <div class="col-sm-10">
                 <select class="form-control" name="proyecto">
-                    <?php require 'libs/cargarProyectos.php' ?>
+                    <?php
+                    foreach ($this->proyectos as &$proyecto) {
+                        echo "<option>".$proyecto."</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Asignar a</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="usuario">
+                    <option>Sin asignar</option>
+                    <?php
+
+                    foreach ($this->usuarios as &$usuario) {
+                        echo "<option>".$usuario."</option>";
+                    }
+
+                    ?>
                 </select>
             </div>
         </div>
