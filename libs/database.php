@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Clase database. Utilizada para realizar las conexiones a la base de datos
+ */
+
 class Database{
 
     private $host;
@@ -16,6 +20,9 @@ class Database{
         $this->charset  = constant('CHARSET');
     }
 
+    /**
+     * Método encargado de establecer la conexión con la base de datos a partir de las constantes determinadas en el archivo config.php
+     */
     function connect(){
     
         try{

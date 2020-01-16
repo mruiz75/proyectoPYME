@@ -12,6 +12,7 @@ class BandejaEntrada extends Controller{
 		$this->view->render('bandejaEntrada/index');
 	}
 
+	/** Función usada para abrir y obtener la información de las hojas de tiempo de los usuarios */
 	function abrir(){
 		$hojaId = $_POST['hojaId'];
 		$tareas = $this->model->getTareas($hojaId);
@@ -28,6 +29,7 @@ class BandejaEntrada extends Controller{
 		$this->view->render('bandejaEntrada/gestionHoja');
 	}
 
+	/** Función encargada de actualizar datos como los comentarios y el estado en la hoja de tiempo para aceptar la hoja del usuario*/
 	function aceptar(){
 		$count = count($_POST['id']);
 		$hojaId = $_POST['hojaId'];
@@ -42,6 +44,7 @@ class BandejaEntrada extends Controller{
 		$this->render();
 	}
 
+	/** Función encargada de actualizar datos como los comentarios y el estado en la hoja de tiempo para rechazarla y devolversela al usuario */
 	function rechazar(){
 		$hojaId = $_POST['hojaId'];
 		$comentarios = $_POST['comentarios'];

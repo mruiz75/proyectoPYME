@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Clase usada para desconectar al usuario de la sesión y terminarla.
+ */
+
 include_once 'libs/user_session.php';
 
 class Logout extends Controller{

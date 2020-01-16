@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Clase que le da estructura al funcionamiento de las vistas.
+ */
+
 class View{
 
     function __construct(){

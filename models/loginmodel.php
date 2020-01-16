@@ -6,6 +6,10 @@ class LoginModel extends Model{
         parent::__construct();
     }
 
+    /** 
+     * Función que obtiene la información almacenada en base de datos, sobre el usuario que está iniciando sesión
+     * Param: un arreglo con un string email y otro string contrasena.
+     */
     public function getUser($datos){
 
         $query = $this->db->connect()->prepare('SELECT * FROM usuario WHERE correo = :correo AND contrasena = :contrasena');

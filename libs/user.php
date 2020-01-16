@@ -11,6 +11,11 @@ class User extends database{
     private $posicion;
     private $departamento;
 
+    /**
+     * Función encargada de verificar la existencia del usuario y contraseña dados en la base de datos
+     * Param: un string conteniendo el email ingresado por el usuario
+     * Param: un string conteniendo la contrasena dada por el usuario.
+     */
     public function userExists($correo, $contrasena){
 
         $query = $this->connect()->prepare('SELECT * FROM usuario WHERE correo = :correo');
@@ -25,6 +30,10 @@ class User extends database{
         }
     }
 
+    /**
+     * Función encargada de establecer, dentro de la sesión actual, la información del usuario en sesión
+     * Param: un string conteniendo el email ingresado por el usuario. 
+     */
     public function setUser($correo){
         $query = $this->connect()->prepare('SELECT * FROM usuario WHERE correo = :correo');
         $query->execute(['correo' => $correo]);
@@ -37,6 +46,10 @@ class User extends database{
         }
     }
 
+    /**
+     * Función encargada de insertar un usuario en base de datos
+     * Param: un objeto de tipo user.
+     */
     function insertUser($user) {
 
         $query = $this->connect()->prepare('INSERT INTO usuario 
