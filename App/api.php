@@ -137,8 +137,17 @@
                 $fecha = '2020-01-19';
 
                 try{
+                    $stmtDepartamento = $conn->prepare('SELECT departamento.nombre FROM departamento WHERE departamento.id = ?');
+                    $stmtDepartamento->bind_param("s", $departamento);
+                    $stmtDepartamento->execute();
+                    $stmtDepartamento->store_result();
+                    
+                    $stmtDepartamento->bind_result($nombreDepartamento);
+                    $rowDeparmento = $stmtDepartamento->fetch();
+                    
+                    
                     $stmt = $conn->prepare('SELECT reporte.fecha_creacion, reporte.tareas_realizadas, reporte.tareas_no_realizadas, reporte.tiempo_tareas, reporte.tiempo_promedio_tareas, reporte.tiempo_libre, reporte.tiempo_promedio_libre, reporte.usuario_max_tareas, reporte.max_tareas, reporte.usuario_min_tareas, reporte.min_tareas FROM reporte WHERE DATE(reporte.fecha_creacion) = ? AND reporte.departamento = ?');
-                    $stmt->bind_param("ss", $fecha, $departamento);
+                    $stmt->bind_param("ss", $fecha, $nombreDepartamento);
                     $stmt->execute();
                     $stmt->store_result();
 
