@@ -1,57 +1,88 @@
-<?php 
-	
-	//session_start();
-	// if(!isset($_SESSION['email'])){
-	// 	header('location:login.php');
-	// }
- ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
- <!DOCTYPE html>
- <html>
- <head>
- 	<meta charset="utf-8">
- 	<title>Home Page</title>
- 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="home.css">
- </head>
- <body>
 
-	<nav class="navbar navbar-default">
-  		<div class="container">
-    	<!-- Brand and toggle get grouped for better mobile display -->
-    		<div class="navbar-header">
-     			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-		        	<span class="sr-only">Toggle navigation</span>
-		        	<span class="icon-bar"></span>
-		        	<span class="icon-bar"></span>
-		        	<span class="icon-bar"></span>
-     			</button>
-      		<a class="navbar-brand btn disabled" href="#">LOGO</a>
-    		</div>
+    <title>Gestion de reportes</title>
+</head>
+<body>
+    <div class="container">
+        <?php require 'views/header.php'; ?>
 
-    	<!-- Collect the nav links, forms, and other content for toggling -->
-    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      		<ul class="nav navbar-nav">
-      		  <li><a href="../hojaDeTiempo/index.php">Hoja de Tiempo</a></li>
- 			    	<li><a href="../bandejaEntrada/index.php">Bandeja de Entrada</a></li>
- 			    	<li><a href="../gestionUsuarios/index.php">Gestión de Usuarios</a></li>
- 			    	<li><a href="../gestionTareas/index.php">Gestión de Tareas</a></li>
- 			    	<li><a href="../gestionProyectos/index.php">Gestión de Proyectos</a></li>
- 			    	<li class="active"><a href="#">Reportes</a></li>
-      		</ul>
-      		<ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="btn disabled"><?php echo $_SESSION['correo'] ?></a></li>
-        		<li><a href="logout.php"><i class="fas fa-user"></i> Log Out</a></li>
-      		</ul>
-    		</div><!-- /.navbar-collapse -->
-  		</div><!-- /.container-fluid -->
-	</nav>
+        <a class="btn btn-primary" href="<?php echo constant('URL'); ?>reportes/generar">Generar reporte semanal</a>
 
-  <h1>REPORTES</h1>
+        <h1 class="center">Buscar reportes</h1>
+        <form action="<?php echo constant('URL'); ?>reportes/buscar" method="post">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Fecha desde</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" name="fechaDesde" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Fecha hasta</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" name="fechaHasta" required>
+                </div>
+            </div>
 
-   
-	 <script   src="http://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
- </body>
- </html>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+        </form>
+
+        <?php
+            if (isset($this->query)) {?>
+                <table class="table">
+                    <thead class="thead table-primary">
+                    <tr>
+                        <th scope="col">Fecha de creacion</th>
+                        <th scope="col">Departamento</th>
+                        <th scope="col">Tareas realizadas</th>
+                        <th scope="col">Tareas sin realizar</th>
+                        <th scope="col">Tiempo invertido en tareas</th>
+                        <th scope="col">Tiempo promedio por tarea</th>
+                        <th scope="col">Tiempo libre tomado</th>
+                        <th scope="col">Tiempo promedio libre por dia</th>
+                        <th scope="col">Usuario con mas tareas</th>
+                        <th scope="col">Usuario con menos tareas</th>
+                    </tr>
+                    </thead>
+        <?php
+                while($registro=$this->query->fetch()) {?>
+                    <tr>
+                        <td><?php echo $registro['fecha_creacion']?></td>
+                        <td><?php echo $registro['departamento']?></td>
+                        <td><?php echo $registro['tareas_realizadas']?></td>
+                        <td><?php echo $registro['tareas_no_realizadas']?></td>
+                        <td><?php echo $registro['tiempo_tareas']?></td>
+                        <td><?php echo $registro['tiempo_promedio_tarea']?></td>
+                        <td><?php echo $registro['tiempo_libre']?></td>
+                        <td><?php echo $registro['tiempo_promedio_libre']?></td>
+                        <td><b><?php echo $registro['usuario_max_tareas'] ?></b><p>Tareas: <?php echo $registro['max_tareas'] ?></p></td>
+                        <td><b><?php echo $registro['usuario_min_tareas'] ?></b><p>Tareas: <?php echo $registro['min_tareas'] ?></p></td>
+        <?php
+                }
+            }
+
+            if (isset($this->mensaje)) {
+                echo $this->mensaje;
+            }
+        ?>
+
+
+    </div>
+
+    <?php require 'views/footer.php'; ?>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
