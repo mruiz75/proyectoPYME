@@ -33,7 +33,7 @@ public class ReporteActivity extends AppCompatActivity {
 
         textViewFechaCreacion.setText(String.valueOf(reporte.getFechaCreacion()));
         textViewTareasRealizadas.setText(String.valueOf(reporte.getTareasRealizadas()));
-        textViewTareasRealizadas.setText(String.valueOf(reporte.getTareasNoRealizadas()));
+        textViewTareasNoRealizadas.setText(String.valueOf(reporte.getTareasNoRealizadas()));
         textViewTiempoEfectivo.setText(String.valueOf(reporte.getTiempoTareas()));
         textViewTiempoEfectivoPromedio.setText(String.valueOf(reporte.getTiempoPromedioTareas()));
         textViewTiempoLibre.setText(String.valueOf(reporte.getTiempolibre()));

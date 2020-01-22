@@ -69,8 +69,6 @@ public class InicioActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(String s){
-                Toast.makeText(InicioActivity.this, "entre a postExecute", Toast.LENGTH_LONG).show();
-
                 super.onPostExecute(s);
                 progressBar.setVisibility(View.GONE);
 
@@ -81,7 +79,6 @@ public class InicioActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
                         JSONObject reporteJson = obj.getJSONObject("reporte");
-                        Toast.makeText(InicioActivity.this, reporteJson.getString("tiempoTareas"), Toast.LENGTH_LONG).show();
 
                         Reporte reporte = new Reporte(
                                 reporteJson.getInt("tareasRealizadas"),
@@ -118,7 +115,6 @@ public class InicioActivity extends AppCompatActivity {
 
                 HashMap<String, String> params = new HashMap<>();
                 params.put("departamento", departamento);
-                System.out.println(usuario.getDepartamento());
 
                 return requestHandler.sendPostRequest(URLs.URL_REPORTE, params);
             }
@@ -148,13 +144,11 @@ public class InicioActivity extends AppCompatActivity {
                     if(!obj.getBoolean("error")){
                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                        //JSONObject tareasJson = obj.getJSONObject("tareas");
-                        //JSONObject hojaJson = obj.getJSONObject("hoja");
+
                         JSONObject resultadoJson = obj.getJSONObject("resultado");
 
                         Intent intent = new Intent(getApplicationContext(), HojaTiempoActivity.class);
-                        //intent.putExtra("tareasJson", tareasJson.toString());
-                        //intent.putExtra("hojaJson", hojaJson.toString());
+
                         intent.putExtra("resultadoJson", resultadoJson.toString());
 
                         finish();
