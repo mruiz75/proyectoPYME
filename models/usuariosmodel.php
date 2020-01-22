@@ -170,11 +170,20 @@ class UsuariosModel extends Model {
 
             $query->execute(['usuario'=>$registro['cedula']]);
 
+            $query3 = $this->db->connect()->prepare('SELECT administrador 
+                                                     FROM departamento
+                                                     WHERE id = :id');
+
+            $query3->execute(['id'=>$_SESSION['departamento']]);
+
+            $resultado = $query3->fetch();
+
             $query2 = $this->db->connect()->prepare('UPDATE proyecto 
-                                                            SET administrador = NULL
+                                                            SET administrador = :manager
                                                             WHERE administrador = :cedula');
 
-            $query2->execute(['cedula'=>$registro['cedula']]);
+            $query2->execute(['cedula'=>$registro['cedula'],
+                              'manager'=>$resultado['administrador']]);
 
             $registro = $query->fetch();
 

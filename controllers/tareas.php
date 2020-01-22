@@ -92,7 +92,9 @@ class Tareas extends Controller {
         $this->model->borrarTarea($_POST['tarea']);
 
         $this->view->message = 'Tarea '.$_POST['tarea'].' borrada correctamente';
-        $this->view->tareas = $this->mostrarTareas();
-        $this->view->render('tareas/index');
+        $this->view->tareas = $this->model->cargarTareasABorrar();
+        $this->view->proyectos = $this->model->cargarProyectos();
+        $this->view->usuarios = $this->model->cargarUsuarios();
+        $this->view->render('gestionTareas/index');
     }
 }
