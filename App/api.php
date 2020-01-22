@@ -91,7 +91,7 @@
                     $contrasenaLogin = $_POST['contrasena'];
 
                     //creating the query 
-                    $stmt = $conn->prepare("SELECT usuario.cedula, usuario.nombre, usuario.apellido1, usuario.apellido2, usuario.correo, usuario.contrasena, usuario.telefono, usuario.departamento, usuario.posicion FROM usuario WHERE usuario.correo = ?");
+                    $stmt = $conn->prepare("SELECT usuario.cedula, usuario.nombre, usuario.apellido1, usuario.apellido2, usuario.correo, usuario.contrasena, usuario.telefono, usuario.departamento, usuario.posicion FROM usuario WHERE usuario.correo = ? AND usuario.posicion != 2");
                     $stmt->bind_param("s", $email);
                     $stmt->execute();
                     
@@ -126,9 +126,45 @@
 
                     }else{
                         //Si la contrasena no es la misma 
-                        $response['error'] = false; 
+                        $response['error'] = true; 
                         $response['message'] = 'Email o contrasena invalidos.';
                     }
+                }
+            break;
+            
+            case 'reporte':
+                $departamento = $_POST['departamento'];
+                $fecha = '2020-01-19';
+
+                try{
+                    $stmt = $conn->prepare('SELECT reporte.fecha_creacion, reporte.tareas_realizadas, reporte.tareas_no_realizadas, reporte.tiempo_tareas, reporte.tiempo_promedio_tareas, reporte.tiempo_libre, reporte.tiempo_promedio_libre, reporte.usuario_max_tareas, reporte.max_tareas, reporte.usuario_min_tareas, reporte.min_tareas FROM reporte WHERE DATE(reporte.fecha_creacion) = ? AND reporte.departamento = ?');
+                    $stmt->bind_param("ss", $fecha, $departamento);
+                    $stmt->execute();
+                    $stmt->store_result();
+
+                    $stmt->bind_result($fechaCreacion, $tareasRealizadas, $tareasNoRealizadas, $tiempoTareas, $tiempoPromedioTareas, $tiempoLibre, $tiempoPromedioLibre, $usuarioMaxTareas, $maxTareas, $usuarioMinTareas, $minTareas);
+                    $row = $stmt->fetch();
+                    $reporte = array(
+                        'fechaCreacion' => $fechaCreacion,
+                        'tareasRealizadas' => $tareasRealizadas,
+                        'tareasNoRealizadas' => $tareasNoRealizadas,
+                        'tiempoTareas' => $tiempoTareas,
+                        'tiempoPromedioTareas' => $tiempoPromedioTareas,
+                        'tiempoLibre' => $tiempoLibre,
+                        'tiempoPromedioLibre' => $tiempoPromedioLibre,
+                        'usuarioMaxTareas' => $usuarioMaxTareas,
+                        'maxTareas' => $maxTareas,
+                        'usuarioMinTareas' => $usuarioMinTareas,
+                        'minTareas' => $minTareas
+                    );
+
+                    $response['error'] = false; 
+                    $response['message'] = 'Reporte cargado satisfactoriamente'; 
+                    $response['reporte'] = $reporte; 
+                
+                }catch(PDOException $e){
+                    $response['error'] = true; 
+                    $response['message'] = 'Error al cargar el reporte';
                 }
             break;
 
@@ -142,7 +178,7 @@
                     $stmt->store_result();
 
                     $stmt->bind_result($id, $nombre, $descripcion, $fechaLimite, $proyecto, $hojaTiempo, $estado, $lunes, $martes, $miercoles, $jueves, $viernes);
-                    while($row = $stmt->fecth()){
+                    while($row = $stmt->fetch()){
                         $tarea = array(
                             'id' => $id,
                             'nombre' => $nombre,

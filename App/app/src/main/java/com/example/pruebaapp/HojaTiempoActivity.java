@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+//Clase imcompleta. Su implementación requiere de algunos cambios y modificación del código
 public class HojaTiempoActivity extends AppCompatActivity {
 
     TareaAdapter tareaAdapter;

@@ -1,5 +1,6 @@
 package com.example.pruebaapp;
 
+//Clase para generar objetos de tipo Usuario
 public class Usuario {
 
     private int cedula;

@@ -11,20 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
+//Actividad inicial, se despliega apenas corre el app.
 public class MainActivity extends AppCompatActivity {
 
     EditText editTextEmail, editTextContrasena;
@@ -44,16 +37,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.textViewRegister).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //open register screen
-                finish();
-                startActivity(new Intent(getApplicationContext(), RegistroActivity.class));
-            }
-        });
     }
 
+    /* Metodo encargado de obtener los datos del usuario y verificar la existencia del mismos en la base
+       además de corroborar que la clave sea la correcta. Una vez hecho esto, almacena en SharedPreferences
+       al usuario en sesión y llama a la actividad de Home.
+     */
     private void userLogin() {
         // Se obtienen los valores insertados
         final String email = editTextEmail.getText().toString();
@@ -119,15 +108,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected String doInBackground(Void... voids) {
-                //creating request handler object
                 RequestHandler requestHandler = new RequestHandler();
 
-                //creating request parameters
+                // se crean los parámetros del request.
                 HashMap<String, String> params = new HashMap<>();
                 params.put("email", email);
                 params.put("contrasena", contrasena);
 
-                //returing the response
                 return requestHandler.sendPostRequest(URLs.URL_LOGIN, params);
             }
         }

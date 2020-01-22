@@ -19,6 +19,8 @@ import java.util.HashMap;
 
 import android.os.Bundle;
 
+
+//Clase casi completa, utilizada para realizar un registro de un nuevo usuario desde la aplicación móvil
 public class RegistroActivity extends AppCompatActivity {
 
     EditText editTextCedula, editTextNombre, editTextApellido1, editTextApellido2, editTextEmail, editTextContrasena, editTextTelefono;
@@ -48,8 +50,7 @@ public class RegistroActivity extends AppCompatActivity {
         findViewById(R.id.textViewLogin).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //if user pressed on login
-                //we will open the login screen
+            //caso el que el usuario desea volver al login
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
             }
@@ -127,17 +128,20 @@ public class RegistroActivity extends AppCompatActivity {
         }
 
 
-        //if it passes all the validations
+        //Si pasa todas las validaciones
 
         class RegisterUser extends AsyncTask<Void, Void, String> {
 
-
+            /*El siguiente método se encarga de generar un mapa hash con los datos del usuario por registrar
+              y los envia a través de un POST al api en el servidor para ser agregados como un nuevo usuario
+              a la base de datos
+             */
             @Override
             protected String doInBackground(Void... voids) {
-                //creating request handler object
+
                 RequestHandler requestHandler = new RequestHandler();
 
-                //creating request parameters
+
                 HashMap<String, String> params = new HashMap<>();
                 params.put("cedula", cedula);
                 params.put("nombre", nombre);
@@ -149,27 +153,25 @@ public class RegistroActivity extends AppCompatActivity {
                 params.put("posicion", posicion);
                 params.put("departamento", departamento);
 
-                //returing the response
                 return requestHandler.sendPostRequest(URLs.URL_REGISTER, params);
             }
 
-
+            /*
+            Una vez creado un nuevo usuario, lo establece como el usuario en sesión y hace un llamado a la actividad Home
+            o bien la actividad de inicio del app.
+             */
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
 
                 try {
-                    //converting response to json object
                     JSONObject obj = new JSONObject(s);
 
-                    //if no error in response
                     if (!obj.getBoolean("error")) {
                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                        //getting the user from the response
                         JSONObject userJson = obj.getJSONObject("usuario");
 
-                        //creating a new user object
                         Usuario usuario = new Usuario(
                                 userJson.getInt("cedula"),
                                 userJson.getString("nombre"),
@@ -181,10 +183,9 @@ public class RegistroActivity extends AppCompatActivity {
                                 userJson.getString("deparamento")
                         );
 
-                        //storing the user in shared preferences
+                        //guarda el usuario en sharedPreferences
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(usuario);
 
-                        //starting the profile activity
                         finish();
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     } else {
@@ -196,7 +197,7 @@ public class RegistroActivity extends AppCompatActivity {
             }
         }
 
-        //executing the async task
+        //ejecutando la clase Async
         RegisterUser ru = new RegisterUser();
         ru.execute();
     }
