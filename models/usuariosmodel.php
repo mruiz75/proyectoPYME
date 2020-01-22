@@ -5,12 +5,22 @@ if(!isset($_SESSION['nombre'])){
     session_start();
 }
 
+/**
+ * Class UsuariosModel
+ * Clase para el modelo de la gestion de usuarios
+ */
 class UsuariosModel extends Model {
 
     function __construct() {
         parent::__construct();
     }
 
+    /**
+     * Funcion que carga los usuarios de la base
+     * Si el usuario en sesion es CEO carga todos los usuarios
+     * si es manager carga los usuarios del departamento
+     * @return array|Exception|PDOException array con los usuarios
+     */
     public function cargarUsuarios() {
         try {
             if ($_SESSION['posicion'] == 0) {
@@ -44,6 +54,10 @@ class UsuariosModel extends Model {
         }
     }
 
+    /**
+     * Funcion que carga los departamentos de la base
+     * @return array|Exception|PDOException array con los departamentos
+     */
     public function cargarDepartamentos() {
         try {
             $query = $this->db->connect()->prepare('SELECT nombre 
@@ -64,6 +78,11 @@ class UsuariosModel extends Model {
         }
     }
 
+    /**
+     * Funcion que obtiene el id de un departamento a traves del nombre
+     * @param $nombre String nombre del departamento
+     * @return Exception|PDOException
+     */
     public function getDepartamentoId($nombre) {
         try {
             $query = $this->db->connect()->prepare('SELECT id
@@ -81,6 +100,12 @@ class UsuariosModel extends Model {
         }
     }
 
+    /**
+     * Funcion que cambia un usuario de departamento, lo busca a traves del nombre
+     * @param $nombreCompleto Array con nombre y apellidos del usario
+     * @param $departamentoId Int id del departamento al que se movera el usuario
+     * @return Exception|PDOException
+     */
     public function cambiarDepartamento($nombreCompleto, $departamentoId) {
         try {
             $this->quitarTareasYProyecto($nombreCompleto);
@@ -99,6 +124,12 @@ class UsuariosModel extends Model {
         }
     }
 
+    /**
+     * Funcion que cambia la posicion de un usuario en la base, lo busca a traves del nombre
+     * @param $nombreCompleto Array nombre y apellidos del usuario
+     * @param $posicion 0 si es CEO, 1 si es manager o 2 si es empleado
+     * @return Exception|PDOException
+     */
     public function ascender($nombreCompleto, $posicion) {
         try {
             $query = $this->db->connect()->prepare('UPDATE usuario 
@@ -115,6 +146,12 @@ class UsuariosModel extends Model {
         }
     }
 
+    /**
+     * Funcion que quita las tareas y proyectos asignados a un usuario que sera cambiado
+     * de departamento
+     * @param $nombreCompleto Array nombre y apellidos del usuario
+     * @return Exception|PDOException
+     */
     function quitarTareasYProyecto($nombreCompleto) {
         try {
             $query = $this->db->connect()->prepare('SELECT cedula 

@@ -126,6 +126,12 @@ class HojaTiempoModel extends Model{
         return $result['id'];
     }
 
+    /**
+     * Funcion que carga las tareas que estan libres en el departamento
+     * es decir sin asignar para que puedan ser agregadas por un usuario
+     * a su hoja de tiempo
+     * @return array|Exception array con las tareas o una excepcion de error en la base
+     */
     public function cargarTareas() {
         try{
             $query = $this->db->connect()->prepare('SELECT t.nombre 

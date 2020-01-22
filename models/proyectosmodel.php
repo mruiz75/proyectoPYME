@@ -1,12 +1,24 @@
 <?php
 session_start();
 
+/**
+ * Class ProyectosModel
+ * Clase para el modelo de la gestion de proyectos
+ */
 class ProyectosModel extends Model {
 
     public function __construct() {
         parent::__construct();
     }
 
+    /**
+     * Funcion que inserta un proyecto en la base de datos
+     * @param $nombre String nombre del proyecto
+     * @param $descripcion String descripcion para el proyecto
+     * @param $administrador Int cedula del usuario administrador del proyecto
+     * @param $departamento Int id del departamento al que pertence el proyecto
+     * @return Exception en caso de error en la conexion
+     */
     public function insert($nombre,$descripcion,$administrador,$departamento) {
         try {
             $query = $this->db->connect()->prepare('INSERT INTO proyecto(nombre,descripcion,departamento,administrador)
@@ -22,6 +34,11 @@ class ProyectosModel extends Model {
         }
     }
 
+    /**
+     * Funcion que obtiene la cedula de un usuario a traves de su nombre
+     * @param $nombreCompleto Array el nombre y los apellidos del usuario
+     * @return Exception en caso de error en la base
+     */
     public function getCedulaFromUser($nombreCompleto) {
         try {
             $query = $this->db->connect()->prepare('SELECT cedula 
@@ -41,6 +58,13 @@ class ProyectosModel extends Model {
         }
     }
 
+    /**
+     * Funcion que carga los usuarios de la base para poder asignarles un proyecto
+     * Si el usuario en sesion es CEO carga todos los usuarios pero si es manager solo
+     * carga los usuarios de departamento
+     * @return array|Exception array con los usuarios de la base o excepcion
+     * en caso de error con la base
+     */
     public function cargarUsuarios() {
         try {
             if ($_SESSION['posicion'] == 0) {
@@ -72,6 +96,13 @@ class ProyectosModel extends Model {
         }
     }
 
+    /**
+     * Funcion que carga los proyectos de la base para poder borrarlos
+     * Si el usuario en sesion es CEO carga todos los proyectos pero si es manager solo
+     * carga los proyectos del departamento
+     * @return array|Exception array con los proyectos de la base o excepcion
+     * en caso de error con la base
+     */
     public function cargarProyectos() {
         try {
             if ($_SESSION['posicion'] == 0) {
@@ -101,6 +132,11 @@ class ProyectosModel extends Model {
         }
     }
 
+    /**
+     * Funcion para borrar un proyecto de la base de datos
+     * @param $nombre String nombre del proyecto a borrar
+     * @return Exception en caso de error con la base
+     */
     public function borrar($nombre) {
         try {
             $query = $this->db->connect()->prepare('DELETE FROM proyecto
@@ -113,6 +149,13 @@ class ProyectosModel extends Model {
         }
     }
 
+    /**
+     * Funcion que carga los departamentos de la base para poder asignarles un proyecto
+     * Si el usuario en sesion es CEO carga todos los departamentos pero si es manager solo
+     * carga el departmaneto al que pertenece
+     * @return array|Exception array con los departamentos de la base o excepcion
+     * en caso de error con la base
+     */
     public function cargarDepartamentos() {
         try {
             if ($_SESSION['posicion'] == 0) {
@@ -141,6 +184,11 @@ class ProyectosModel extends Model {
         }
     }
 
+    /**
+     * FUncion que obtiene el id de un departamento a traves del nombre
+     * @param $nombre String nombre del departamento
+     * @return Exception en caso de error con la base
+     */
     public function getIdFromDepartamento($nombre) {
         try {
             $query = $this->db->connect()->prepare('SELECT id FROM departamento WHERE nombre = :nombre');

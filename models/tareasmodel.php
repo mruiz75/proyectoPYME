@@ -70,6 +70,15 @@ class TareasModel extends Model {
         }
     }
 
+    /**
+     * Funcion que carga las tareas de la base de datos que no esten
+     * asignadas a ningun usuario y pueden ser borradas
+     * Si el usuario en sesion es un empleado solo cargara tareas que
+     * pertenezcan a el proyecto al que administra el empleado
+     * si es un manager cargara las tareas del departamento y si es
+     * un CEO cargara las tareas de todos los departamentos
+     * @return array|Exception|PDOException array con las tareas
+     */
     public function cargarTareasABorrar() {
         try {
             if ($_SESSION['posicion'] == 0) {
@@ -109,6 +118,11 @@ class TareasModel extends Model {
         }
     }
 
+    /**
+     * Funcion que borra la tarea de la base de datos a traves del nombre
+     * @param $nombre String nombre de la tarea
+     * @return Exception|PDOException
+     */
     public function borrarTarea($nombre) {
         try {
             $query = $this->db->connect()->prepare('DELETE FROM tarea WHERE nombre = :nombre');
@@ -120,6 +134,12 @@ class TareasModel extends Model {
         }
     }
 
+    /**
+     * Funcion que carga los usuarios de la base que tengan una hoja de tiempo activa
+     * para poder asignarles una tarea, si el usuario en sesion es CEO carga todos los usuarios
+     * Si es manager o empleado solo carga los usuarios de su departamento
+     * @return array|Exception|PDOException
+     */
     public function cargarUsuarios() {
         try {
             if ($_SESSION['posicion'] == 0) {
@@ -154,6 +174,13 @@ class TareasModel extends Model {
         }
     }
 
+    /**
+     * Funcion que carga los proyectos de la base para asignarles una tarea
+     * Si el usuario en sesion es CEO carga todos los proyectos si es manager
+     * carga los proyectos del departamento y si es empleado solo carga los
+     * proyectos que administra
+     * @return array|Exception|PDOException
+     */
     public function cargarProyectos() {
         try {
             if ($_SESSION['posicion'] == 0) {
@@ -190,6 +217,11 @@ class TareasModel extends Model {
         }
     }
 
+    /**
+     * Funcion que obtiene el id de un proyecto a traves del nombre
+     * @param $nombre String nombre del proyecto
+     * @return Exception|PDOException
+     */
     public function getIdFromProyecto($nombre) {
         try {
             $query = $this->db->connect()->prepare('SELECT id FROM proyecto WHERE nombre = :nombre');

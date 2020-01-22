@@ -1,12 +1,18 @@
 <?php
 
-
+/**
+ * Class Proyectos
+ * Clase del controller para la gestion de proyectos
+ */
 class Proyectos extends Controller {
 
     function __construct() {
         parent::__construct();
     }
 
+    /**
+     * Funcion que carga la vista asociada al controller
+     */
     function render() {
         $this->view->departamentos = $this->model->cargarDepartamentos();
         $this->view->usuarios = $this->model->cargarUsuarios();
@@ -14,6 +20,10 @@ class Proyectos extends Controller {
         $this->view->render("gestionProyectos/index");
     }
 
+    /**
+     * Funcion que inserta un proyecto a traves del modelo
+     * obtiene la cedula y el id del departamento a traves del nombre
+     */
     function insertar() {
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
@@ -39,6 +49,9 @@ class Proyectos extends Controller {
         }
     }
 
+    /**
+     * Funcion que borra un proyecto a traves del modelo
+     */
     function borrar() {
         $this->model->borrar($_POST['proyecto']);
 

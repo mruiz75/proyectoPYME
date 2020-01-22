@@ -13,9 +13,6 @@ class Tareas extends Controller {
 
     /**
      * Funcion principal del controller que muestra la vista
-     * o inserta una tarea llamando al modelo
-     * utiliza el archivo ProyectoModel para obtener el id del proyecto
-     * al que pertenece la tarea
      */
     function render() {
         $this->view->tareas = $this->model->cargarTareasABorrar();
@@ -24,6 +21,11 @@ class Tareas extends Controller {
         $this->view->render('gestionTareas/index');
     }
 
+    /**
+     * Funcion que inserta una tarea a traves del modelo
+     * verifica que la fecha limite no sea anterior a la actual
+     * y obtiene el id del proyecto a traves del nombre
+     */
     function insertar() {
         $tarea = new Tarea();
         $tarea->nombre = $_POST['nombre'];
@@ -83,6 +85,9 @@ class Tareas extends Controller {
         header('Location: '.constant('URL').'hojaTiempo');
     }
 
+    /**
+     * Funcion que borra una tarea a traves del modelo
+     */
     function borrar() {
         $this->model->borrarTarea($_POST['tarea']);
 
