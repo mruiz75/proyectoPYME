@@ -12,8 +12,15 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+//Clase encargada de manejar los requests hechos por las actividades.
 public class RequestHandler {
 
+    /*
+    Metodo encargado de manejar los request de tipo POST. Retorna un string con la información
+    obtenida del servidor.
+    @param: requestURL -> String con el URL hacia la API almacenada en el servidor
+    @param: postDataParms -> hashmap con los datos necesario para hacer el POST
+     */
     public String sendPostRequest(String requestURL, HashMap<String, String> postDataParms){
         URL url;
 
@@ -56,6 +63,10 @@ public class RequestHandler {
 
     }
 
+    /*
+    Metodo que se encarga de obtener información del servidor. Retorna un string con la información devuelta por el API.
+    @param: requestURL -> String con el URL hacia la API almacenada en el servidor
+     */
     public String sendGetRequest(String requestURL) {
         URL url;
 
@@ -74,6 +85,10 @@ public class RequestHandler {
         return sb.toString();
     }
 
+    /*
+    Método encargado de generar el string con los parametros ingresados por el usuario que va a ser enviado a través del POST
+    @param: params -> hashmap con los string de los datos que ingreso el usuario.
+     */
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;

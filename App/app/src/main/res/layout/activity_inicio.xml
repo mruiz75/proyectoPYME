@@ -29,40 +29,17 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
 
             <Button
-                android:id="@+id/buttonHojaTiempo"
+                android:id="@+id/buttonReporte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="15dp"
                 android:background="#1976d2"
-                android:text="Hoja de Tiempo"
+                android:text="Generar Reporte"
                 android:textColor="#FFF"
                 android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/buttonBandejaEntrada"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="15dp"
-                android:background="#1976d2"
-                android:text="Bandeja de Entrada"
-                android:textColor="#FFF"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/buttonGestionTareas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="15dp"
-                android:background="#1976d2"
-                android:text="Gestion de Tareas"
-                android:textColor="#FFF"
-                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/buttonLogout"
@@ -77,6 +54,15 @@
                 android:textSize="18sp" />
 
         </LinearLayout>
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
     </FrameLayout>
 
 <!--    <TextView-->
