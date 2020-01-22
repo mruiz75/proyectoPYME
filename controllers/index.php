@@ -21,16 +21,19 @@ class Index extends Controller{
         $userSession = new UserSession();
         $user = new User();
 
+        //verifica si hay usuario en sesión y si es así retorna su información en un objeto user.
         if(isset($_SESSION['user'])){
             $user->setUser($userSession->getCurrentEmail());
             $this->view->user = $user;
             $this->view->render('inicio/index');
 
+        // Si fueron insertados un email y una contrasena por el usuario.
         }else if(isset($_POST['correo']) && isset($_POST['contrasena'])){
             $emailForm = $_POST['correo'];
             $passForm = $_POST['contrasena'];
             $user = new User();
             
+            //se verifica la existencia de la información suministrada.
             if($user->userExists($emailForm, $passForm)){
                 $userSession->setCurrentEmail($emailForm);
                 $user->setUser($emailForm);

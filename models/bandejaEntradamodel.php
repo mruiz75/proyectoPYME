@@ -13,6 +13,9 @@ class BandejaEntradaModel extends Model{
         parent::__construct();
     }
 
+    /**
+     * Función que obtiene la información pertinente a las hojas de tiempo activas a partir de la cédula del usuario en sesión.
+     */
     public function getHojas(){
         $cedula = $_SESSION['cedula'];
         $items = [];
@@ -41,6 +44,10 @@ class BandejaEntradaModel extends Model{
         }
     }
 
+    /**
+     * Función que obtiene la información pertinente a las tareas pertenecientes a la hoja de tiempo del usuario en cuestión.
+     * Param: un int con el id de la hoja de tiempo del usuario en sesión
+     */
     public function getTareas($hojaId){
         $items = [];
         try{
@@ -70,6 +77,10 @@ class BandejaEntradaModel extends Model{
         }
     }
 
+     /**
+     * Función que actualiza una tarea y la establece como concluida.
+     * Param: un int con el id de la tarea por modificar.
+     */
     public function updateTarea($id){
         try{
             $query = $this->db->connect()->prepare('UPDATE tarea SET tarea.estado = 1 WHERE tarea.id = :id');
@@ -80,6 +91,9 @@ class BandejaEntradaModel extends Model{
         }
     }
 
+    /**
+     * Función que obtiene la información pertinente a las hojas de tiempo activas a partir de la cédula del usuario en sesión.
+     */
     public function updateHojaTiempo($datos){
         $hojaId = $datos['hojaId'];
         $comentarios = $datos['comentarios'];
@@ -94,6 +108,9 @@ class BandejaEntradaModel extends Model{
         }
     }
 
+    /**
+     * Función que obtiene la información pertinente a las hojas de tiempo activas a partir de la cédula del usuario en sesión.
+     */
     public function getHojaTiempo($id) {
         try {
             $query = $this->db->connect()->prepare('SELECT * FROM hoja_de_tiempo WHERE id = :id');

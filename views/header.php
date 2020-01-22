@@ -1,3 +1,5 @@
+<!-- Header que contiene la barra de navegación entre secciones de la aplicación web -->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +14,11 @@
     <title>Colors</title>
 </head>
 <body>
-    <?php session_start()?>
+    <?php 
+        if(!isset($_SESSION['nombre'])){
+            session_start();
+        }
+    ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand disabled" href="<?php echo constant('URL'); ?>inicio" aria-disabled="true">LOGO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

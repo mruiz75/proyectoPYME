@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Archivo encargado de darle estructura a la aplicación. Recibe los URLs a donde el usuario desea dirigirse,
+ * analiza el URL y determina si se está llamando a un controlador o a un método específico.
+ * 
+ */
+
 require_once 'controllers/errores.php';
 
 class App{

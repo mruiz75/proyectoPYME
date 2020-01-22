@@ -12,6 +12,9 @@ class HojaTiempoModel extends Model{
         parent::__construct();
     }
 
+    /**
+     * Función que obtiene las tareas pertenecientes a una determinada hoja de tiempo activa para el usuario que está en sesión.
+     */
     public function getTareas(){
         $cedula = $_SESSION['cedula'];
         $items = [];
@@ -43,6 +46,7 @@ class HojaTiempoModel extends Model{
         }
     }
 
+    /** Función que obtiene la información completa de la hoja de tiempo activa del usuario en sesión */
     public function getInfoHojaTiempo(){
         $cedula = $_SESSION['cedula'];
 
@@ -64,6 +68,10 @@ class HojaTiempoModel extends Model{
         }
     }
 
+    /** 
+     * Función que actualiza los tiempos invertidos en cada tarea de la hoja de tiempo.
+     * Param: un arreglo de datos con la información de los tiempos.
+    */
     public function updateTareas($datos){
         //necesito agregar tiempos y cambiar estado a 1 = finalizadas
         $cedula = $_SESSION['cedula'];
@@ -82,8 +90,11 @@ class HojaTiempoModel extends Model{
         }
     }
 
+    /**
+     * Función encargada de modificar los tiempos en la hoja de tiempos. 
+     * Param: un arreglo de datos con los datos de cada día de la semana.
+     */
     public function updateHojaTiempoRevision($dias){
-        //necesito agregar fecha de finalizacion y cambiar estado a 0 = inactiva
         $cedula = $_SESSION['cedula'];
         
         try{
@@ -102,6 +113,7 @@ class HojaTiempoModel extends Model{
         }
     }
 
+    /** Función que obtiene el id de la hoja de tiempo */
     public function getId() {
         $cedula = $_SESSION['cedula'];
 
